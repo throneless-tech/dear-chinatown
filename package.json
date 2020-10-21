@@ -1,5 +1,5 @@
 {
-  "name": "hugo-pipes-parcel",
+  "name": "dear-chinatown",
   "version": "2.0.0",
   "description": "A new website for the Dear Chinatown project.",
   "main": "index.js",
@@ -10,24 +10,24 @@
     "clean": "rimraf public/ assets/output static/output resources",
     "build": "run-s deploy:assets build:hugo",
     "start": "run-s build:assets dev",
-    "dev": "run-p dev:parcel dev:hugo",
+    "start:dev": "run-p dev:parcel dev:hugo",
     "dev:hugo": "cross-env NODE_ENV=development hugo server --gc --disableFastRender --navigateToChanged",
     "dev:parcel": "cross-env NODE_ENV=development parcel watch ./assets/index.js --out-dir assets/output",
     "build:assets": "cross-env NODE_ENV=development parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting  --no-cache",
     "deploy:assets": "cross-env NODE_ENV=production parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache",
     "build:hugo": "cross-env NODE_ENV=production hugo --gc --minify"
   },
-  "devDependencies": {
-    "@fullhuman/postcss-purgecss": "^1.1.0",
-    "autoprefixer": "^9.4.7",
-    "cross-env": "^5.2.0",
+  "dependencies": {
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "autoprefixer": "^10.0.1",
+    "cross-env": "^7.0.2",
     "npm-run-all": "^4.1.5",
-    "parcel-bundler": "^1.11.0",
-    "postcss-cli": "^6.1.1",
-    "postcss-import": "^12.0.1",
-    "postcss-modules": "^1.4.1",
-    "rimraf": "^2.6.3",
-    "tailwindcss": "^1.2.0",
-  },
-  "dependencies": {}
+    "parcel-bundler": "^1.12.4",
+    "postcss-cli": "^8.1.0",
+    "postcss-import": "^13.0.0",
+    "postcss-modules": "^3.2.2",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^1.9.5",
+    "typeface-roboto": "^1.1.13"
+  }
 }
