@@ -1,0 +1,33 @@
+{
+  "name": "hugo-pipes-parcel",
+  "version": "2.0.0",
+  "description": "A new website for the Dear Chinatown project.",
+  "main": "index.js",
+  "repository": "https://github.com/throneless-tech/dear-chinatown",
+  "author": "Rae Gaines <rae@throneless.tech>, Harum Helmy <harum@throneless.tech>",
+  "license": "MIT",
+  "scripts": {
+    "clean": "rimraf public/ assets/output static/output resources",
+    "build": "run-s deploy:assets build:hugo",
+    "start": "run-s build:assets dev",
+    "dev": "run-p dev:parcel dev:hugo",
+    "dev:hugo": "cross-env NODE_ENV=development hugo server --gc --disableFastRender --navigateToChanged",
+    "dev:parcel": "cross-env NODE_ENV=development parcel watch ./assets/index.js --out-dir assets/output",
+    "build:assets": "cross-env NODE_ENV=development parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting  --no-cache",
+    "deploy:assets": "cross-env NODE_ENV=production parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache",
+    "build:hugo": "cross-env NODE_ENV=production hugo --gc --minify"
+  },
+  "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.1.0",
+    "autoprefixer": "^9.4.7",
+    "cross-env": "^5.2.0",
+    "npm-run-all": "^4.1.5",
+    "parcel-bundler": "^1.11.0",
+    "postcss-cli": "^6.1.1",
+    "postcss-import": "^12.0.1",
+    "postcss-modules": "^1.4.1",
+    "rimraf": "^2.6.3",
+    "tailwindcss": "^1.2.0",
+  },
+  "dependencies": {}
+}

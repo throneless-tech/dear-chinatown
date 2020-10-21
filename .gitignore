@@ -1,0 +1,30 @@
+# Ignore docs files
+.vscode
+
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.env
+*.orig
+*.log
+*.rej
+*.swo
+*.swp
+*.zip
+*.vi
+*~
+# *.lock
+
+# OS or Editor folders
+*.scssc
+.DS_Store
+Thumbs.db
+.cache
+.project
+.settings
+.tmproj
+.asset-cache
+
+# Folders to ignore
+node_modules
+public
