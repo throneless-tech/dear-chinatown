@@ -1,16 +1,4 @@
 /* To use Tailwind with ParcelJS, call the Tailwind files like this. Otherwise, use imports */
-/* @tailwind preflight;
-@tailwind components;
-@tailwind utilities;  */
-
-@tailwind base;
-@tailwind components;
-@tailwind utilities; 
-
-/* 
-  Uncomment to use Tailwind Utility Class CSS
-    @import "tailwind/tailwind.css";  
-*/
 
 /* @import "tailwind/tailwind.css";   */
 
