@@ -27,7 +27,6 @@
     "postcss-import": "^13.0.0",
     "postcss-modules": "^3.2.2",
     "rimraf": "^3.0.2",
-    "tailwindcss": "^1.9.5",
     "typeface-roboto": "^1.1.13"
   }
 }
