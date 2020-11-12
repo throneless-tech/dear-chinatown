@@ -1,17 +1,25 @@
-<html>
+<html lang="en">
   <head>
+    <title>
+      {{ .Site.Title }}
+      {{ if and .Title }}
+      {{ default "•" .Site.Params.titleSeparator }}
+        {{ .Title }}
+      {{ end }}
+    </title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,minimum-scale=1">
-    
+    <link rel="canonical" href="{{ .Permalink }}">
+
     {{.Hugo.Generator}}
-        
+
     {{ partial "stylesheets.html" . }}
     {{ partial "scripts.html" . }}
-        
+
   </head>
   <body>
-    <div class="bg-red h-screen text-center p-32 font-sans">
+    <div class="">
       {{ block "main" . }}{{ end }}
     </div>
   </body>
