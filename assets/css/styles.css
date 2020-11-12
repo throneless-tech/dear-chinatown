@@ -10,3 +10,16 @@ https://www.purgecss.com/whitelisting#in-the-css-directly */
 
 
 /* purgecss end ignore */
+
+@import "./mapbox.css";
+
+#map {
+  display: block;
+  height: 75%;
+  width: 75%;
+};
+
+.mapboxgl-popup {
+  max-width: 400px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
