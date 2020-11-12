@@ -1,4 +1,4 @@
 ---
-title: Home page
+title: Home
 ---
 View halloo!
