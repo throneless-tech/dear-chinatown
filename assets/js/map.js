@@ -1,4 +1,36 @@
 import mapboxgl from 'mapbox-gl';
+import Airtable from 'airtable';
+
+const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.AIRTABLE_BASE);
+
+let assets = [];
+let data = {"type": "FeatureCollection", "features": []};
+
+base('Assets')
+  .select({
+      view: "Grid view"
+  }).eachPage(function page(records, fetchNextPage) {
+      records.forEach(function(record) {
+        assets.push(record);
+      });
+      fetchNextPage();
+  }, function done(err) {
+      if (err) { console.error(err); return; };
+      assets.forEach(point => {
+        let coordinate = [parseFloat(point.fields.Longitude), parseFloat(point.fields.Latitude)];
+        let properties = point.fields;
+        delete properties.Longitude;
+        delete properties.Latitude;
+        let feature = {
+          "type": "Feature",
+          "geometry": {
+            "type": "Point", "coordinates": coordinate
+          },
+          "properties": properties
+        };
+        data.features.push(feature);
+      })
+  });
 
 mapboxgl.accessToken = 'pk.eyJ1IjoicmdhaW5lcyIsImEiOiJjamZuenFmZXIwa2JuMndwZXd1eGQwcTNuIn0.TbNK-TNQxiGUlWFdzEEavw';
 
@@ -15,24 +47,7 @@ const map = new mapboxgl.Map({
 map.on('load', () => {
   map.addSource('places', {
     'type': 'geojson',
-    'data': {
-      'type': 'FeatureCollection',
-      'features': [
-        {
-          'type': 'Feature',
-          'properties': {
-            'description': 'H Street NW. <b>Reminder of a time</b> when there was actual life in Chinatown. <em>Testing with rich text.</em>',
-            'icon': 'music',
-            'type': 'Landmark',
-            'existing': false
-          },
-          'geometry': {
-            'type': 'Point',
-            'coordinates': [-77.036530, 38.897676]
-          }
-        }
-      ]
-    }
+    'data': data,
   })
 
   map.addLayer({
@@ -40,15 +55,16 @@ map.on('load', () => {
     'type': 'symbol',
     'source': 'places',
     'layout': {
-      'icon-image': '{icon}-15',
+      'icon-image': 'circle-15',
       'icon-allow-overlap': true
     }
   });
 
   map.on('click', 'places', (e) => {
+    console.log(e.features[0]);
     const coordinates = e.features[0].geometry.coordinates.slice();
-    const description = e.features[0].properties.description;
-    const type = e.features[0].properties.type;
+    const description = e.features[0].properties.Description;
+    const type = e.features[0].properties.Type;
 
     // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
