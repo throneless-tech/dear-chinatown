@@ -33376,7 +33376,7 @@ function () {
     return {
       endpointUrl: undefined || 'https://api.airtable.com',
       apiVersion: '0.1.0',
-      apiKey: undefined,
+      apiKey: "keyxWx7wbBAvu68s2",
       noRetryIfRateLimited: false,
       requestTimeout: 300 * 1000
     };
@@ -33418,7 +33418,7 @@ const base = new _airtable.default({
   apiKey: "keyxWx7wbBAvu68s2"
 }).base("appqK60gESyHauPxx");
 let assets = [];
-let data = {
+let collection = {
   "type": "FeatureCollection",
   "features": []
 };
@@ -33436,20 +33436,21 @@ base('Assets').select({
   }
 
   ;
+  let coordinates, properties;
   assets.forEach(point => {
-    let coordinate = [parseFloat(point.fields.Longitude), parseFloat(point.fields.Latitude)];
-    let properties = point.fields;
-    delete properties.Longitude;
-    delete properties.Latitude;
-    let feature = {
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": coordinate
-      },
-      "properties": properties
-    };
-    data.features.push(feature);
+    fetch("http://open.mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.fields.Address)).then(response => response.json()).then(data => {
+      coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
+      properties = point.fields;
+      let feature = {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": coordinates
+        },
+        "properties": properties
+      };
+      collection.features.push(feature);
+    });
   });
 });
 _mapboxGl.default.accessToken = 'pk.eyJ1IjoicmdhaW5lcyIsImEiOiJjamZuenFmZXIwa2JuMndwZXd1eGQwcTNuIn0.TbNK-TNQxiGUlWFdzEEavw';
@@ -33464,22 +33465,21 @@ const map = new _mapboxGl.default.Map({
 map.on('load', () => {
   map.addSource('places', {
     'type': 'geojson',
-    'data': data
+    'data': collection
   });
   map.addLayer({
     'id': 'places',
     'type': 'symbol',
     'source': 'places',
     'layout': {
-      'icon-image': 'circle-15',
+      'icon-image': 'music-15',
       'icon-allow-overlap': true
     }
   });
   map.on('click', 'places', e => {
-    console.log(e.features[0]);
     const coordinates = e.features[0].geometry.coordinates.slice();
     const description = e.features[0].properties.Description;
-    const type = e.features[0].properties.Type; // Ensure that if the map is zoomed out such that multiple
+    const type = e.features[0].properties.Category; // Ensure that if the map is zoomed out such that multiple
     // copies of the feature are visible, the popup appears
     // over the copy being pointed to.
 
@@ -33546,7 +33546,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65411" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50581" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
