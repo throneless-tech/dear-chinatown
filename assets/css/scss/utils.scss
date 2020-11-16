@@ -1,0 +1,25 @@
+/* Basic utility styles */
+
+$bp-sm: map-get($breakpoints, sm);
+
+// container wrap
+.wrap {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  @media (min-width: $bp-sm) {
+    padding-left: 120px;
+    padding-right: 120px;
+  }
+}
+
+// visually hidden
+.vh {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
