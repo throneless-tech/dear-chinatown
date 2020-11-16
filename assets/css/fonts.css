@@ -4,11 +4,11 @@ Error: Undefined variable: "$colors".
 
 1: 
 2: $green: map-get($colors, green);
-3: $red: map-get($colors, red);
-4: $yellow: map-get($colors, yellow);
+3: $off-white: map-get($colors, offWhite);
+4: $red: map-get($colors, red);
 5: 
 6: body {
-7:   background: $yellow;
+7:   font-family: 'Source Serif Pro', serif;
 
 Backtrace:
 assets/css/scss/fonts.scss:2
@@ -62,4 +62,4 @@ assets/css/scss/fonts.scss:2
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$colors\".\A         on line 2 of assets/css/scss/fonts.scss\A \A 1: \A 2: $green: map-get($colors, green);\A 3: $red: map-get($colors, red);\A 4: $yellow: map-get($colors, yellow);\A 5: \A 6: body {\A 7:   background: $yellow;"; }
+  content: "Error: Undefined variable: \"$colors\".\A         on line 2 of assets/css/scss/fonts.scss\A \A 1: \A 2: $green: map-get($colors, green);\A 3: $off-white: map-get($colors, offWhite);\A 4: $red: map-get($colors, red);\A 5: \A 6: body {\A 7:   font-family: 'Source Serif Pro', serif;"; }

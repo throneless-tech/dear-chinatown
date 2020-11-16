@@ -1,0 +1,106 @@
+/* Homepage styles */
+
+$bp-sm: map-get($breakpoints, sm);
+$gutter: 126px;
+
+$green: map-get($colors, green);
+$light-green: map-get($colors, greenLight);
+$off-white: map-get($colors, offWhite);
+$yellow: map-get($colors, yellow);
+
+.home {
+  position: relative;
+
+  &-background {
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+  }
+
+  &-item {
+    @media (min-width: $bp-sm) {
+      margin-left: $gutter;
+    }
+  }// end item
+
+  .main {
+
+    &-explainer {
+      font-weight: 300;
+      margin-bottom: 40px;
+
+    }// end main explainer
+
+    &-standout {
+      background: $off-white;
+      border: 1px solid $light-green;
+      padding-bottom: 40px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 10px;
+
+      @media (min-width: $bp-sm) {
+        padding-left: 40px;
+        padding-right: 40px;
+        padding-top: 20px;
+      }
+    }// end standout
+  }// end main
+
+  .aside {
+
+    &-item {
+      align-items: stretch;
+      background: $green;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 30px;
+
+      &-image {
+        object-fit: cover;
+      }// end aside item image
+
+      &-content {
+        padding: 20px;
+      }
+
+      &-description {
+        color: $off-white;
+      }// end aside item description
+
+      &-link {
+
+        &-text {
+          color: $yellow;
+
+          :last-child {
+            padding-left: 0;
+            transition: 500ms;
+          }
+
+          &:active, &:focus, &:hover {
+            :last-child {
+              padding-left: 10px;
+              transition: 500ms;
+            }
+          }
+        }
+
+        &-hidden {
+
+        }
+      }// end aside item link
+
+      @media (min-width: $bp-sm) {
+        margin-bottom: 80px;
+      }
+    }// end aside item
+  }// end aside
+
+  @media (min-width: $bp-sm) {
+    display: flex;
+    margin-left: -$gutter;
+  }
+}// end home

@@ -1,6 +1,11 @@
 /* Basic utility styles */
 
 $bp-sm: map-get($breakpoints, sm);
+$off-white: map-get($colors, offWhite);
+
+body {
+  background-color: $off-white;
+}
 
 // container wrap
 .wrap {
