@@ -1,5 +1,9 @@
 /*  Header styles */
 
+$bp-sm: map-get($breakpoints, sm);
+$green: map-get($colors, green);
+$gutter: 60px;
+
 .header {
   padding-bottom: 36px;
   padding-top: 36px;
@@ -7,5 +11,40 @@
   &-logo {
     height: 150px;
     width: 150px;
-  }
-}
+  } // end logo
+
+  &-menu {
+
+    &-item {
+
+      &-link {
+        color: $green;
+        font-weight: 700;
+      } // end menu link
+
+      @media (min-width: $bp-sm) {
+        margin-left: $gutter;
+      }
+    } // end menu item
+
+    @media (min-width: $bp-sm) {
+      display: flex;
+      margin-left: -$gutter;
+    }
+  } // end menu
+
+  &-nav {
+
+    &-item {
+      margin-left: $gutter;
+    }// end item
+
+    @media (min-width: $bp-sm) {
+      align-items: center;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      margin-left: -$gutter;
+    }
+  }// end nav
+} // end header

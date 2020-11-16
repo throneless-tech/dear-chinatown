@@ -1,18 +1,20 @@
 
 $green: map-get($colors, green);
+$off-white: map-get($colors, offWhite);
 $red: map-get($colors, red);
-$yellow: map-get($colors, yellow);
 
 body {
-  background: $yellow;
+  font-family: 'Source Serif Pro', serif;
   font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25em;
 
   h1 {
     color: $green;
     font-family: 'Red Rose', cursive;
     font-size: 3em;
     font-weight: 300;
-    line-height: 3.5em;
+    line-height: 1.5em;
   }
 
   h2 {
@@ -20,7 +22,7 @@ body {
     font-family: 'Red Rose', cursive;
     font-size: 2em;
     font-weight: 300;
-    line-height: 2.5em;
+    line-height: 1.5em;
   }
 
   h3 {
@@ -28,7 +30,7 @@ body {
     font-family: 'Red Rose', cursive;
     font-size: 1.5em;
     font-weight: 400;
-    line-height: 1.75em;
+    line-height: 1em;
   }
 
   h4 {
@@ -36,7 +38,7 @@ body {
     font-family: 'Red Rose', cursive;
     font-size: 1.25em;
     font-weight: 300;
-    line-height: 1.5em;
+    line-height: 1em;
   }
 
   h5 {
@@ -44,7 +46,7 @@ body {
     font-family: 'Red Rose', cursive;
     font-size: 1.1em;
     font-weight: 400;
-    line-height: 1.25em;
+    line-height: 1em;
   }
 
   h6 {
@@ -57,12 +59,11 @@ body {
   }
 
   p {
-    font-family: 'Source Serif Pro', serif;
     font-size: 1em;
-    line-height: 1.25em;
+    margin-bottom: 1em;
 
     + p {
-      margin-bottom: 1em;
+      margin-bottom: 0;
     }
   }
 
@@ -72,3 +73,18 @@ body {
     text-decoration: none;
   }
 }
+
+.f {
+
+  &-bold {
+    font-weight: bold;
+  }
+
+  &-green {
+    color: $green;
+  }
+
+  &-rose {
+    font-family: 'Red Rose', cursive;
+  }
+}// end font classes
