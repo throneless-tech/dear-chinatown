@@ -23,7 +23,7 @@ Thumbs.db
 .project
 .settings
 .tmproj
-.asset-cache
+.sass-cache
 
 # Folders to ignore
 node_modules
