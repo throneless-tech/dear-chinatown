@@ -12,6 +12,7 @@ body {
 // container wrap
 .wrap {
   max-width: $bp-lg;
+  overflow: hidden;
   padding-left: 10px;
   padding-right: 10px;
 
