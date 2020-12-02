@@ -41,7 +41,7 @@ $green: map-get($colors, green);
     &:before {
       content: '-';
       color: $green;
-      font-size: 2em;
+      font-size: 4em;
       left: 50%;
       position: absolute;
       top: 50%;
@@ -53,7 +53,7 @@ $green: map-get($colors, green);
     &:before {
       content: '+';
       color: $green;
-      font-size: 2em;
+      font-size: 4em;
       left: 50%;
       position: absolute;
       top: 50%;

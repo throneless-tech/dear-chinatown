@@ -12,12 +12,24 @@ $yellow: map-get($colors, yellow);
   position: relative;
 
   &-background {
+    left: -10%;
+    overflow: hidden;
     position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
+    right: -10%;
+    top: 7%;
+    width: 120vw;
     z-index: -1;
-  }
+
+    &-image {
+      min-height: 700px;
+      object-fit: cover;
+      width: 100%;
+    }
+
+    @media (min-width: $bp-sm) {
+      top: 10%;
+    }
+  }// end background
 
   &-item {
     @media (min-width: $bp-sm) {
@@ -26,16 +38,18 @@ $yellow: map-get($colors, yellow);
   }// end item
 
   .main {
-
     &-explainer {
       font-weight: 300;
       margin-bottom: 40px;
+      max-width: 760px;
 
     }// end main explainer
 
     &-standout {
       background: $off-white;
       border: 1px solid $light-green;
+      margin-bottom: 40px;
+      margin-top: 20%;
       padding-bottom: 40px;
       padding-left: 10px;
       padding-right: 10px;
@@ -50,10 +64,19 @@ $yellow: map-get($colors, yellow);
       &-item {
         display: flex;
         flex-direction: row-reverse;
-        
+
+        &:not(:first-child) {
+          padding-top: 20px;
+        }
+
         &:not(:last-child) {
           border-bottom: 1px solid $green;
+          padding-bottom: 20px;
         }
+
+        &-content {
+          margin-right: 30px;
+        }// end standout item content
       }// end standout item
     }// end standout
   }// end main
