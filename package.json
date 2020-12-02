@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@threespot/expand-toggle": "^1.6.2",
     "airtable": "^0.10.1",
     "autoprefixer": "^10.0.1",
     "cross-env": "^7.0.2",

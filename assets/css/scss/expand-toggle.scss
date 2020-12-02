@@ -1,0 +1,63 @@
+/* Expand toggle styles */
+
+$green: map-get($colors, green);
+
+.expandable {
+  $transition-speed: 400ms;
+
+  // Expanded state
+  &,
+  .js &[aria-hidden="false"] {
+    overflow: hidden;
+    transition: max-height $transition-speed ease-in-out,
+                visibility 0s linear 0s;
+    visibility: visible;
+  }
+
+  // Collapsed state
+  &[aria-hidden="true"],
+  // Selector below prevents a flash of unstyled content (FOUC)
+  .js &:not([aria-hidden]) {
+    max-height: 0 !important;// !important required to override inline styles added by JS
+    transition: max-height $transition-speed ease-in-out,
+                visibility 0s linear $transition-speed;
+    visibility: hidden;
+  }
+}
+
+// We also suggest hiding the button when JS is disabled.
+// Note: Modernizr looks for a “no-js” class on the html tag and replaces it with “js” on load.
+//       If not using Modernizr, see https://www.paulirish.com/2009/avoiding-the-fouc-v3/
+.no-js [data-expands] {
+  display: none;
+}
+
+.expand-button {
+  background: unset;
+  border: none;
+  position: relative;
+
+  &[aria-expanded=true] {
+    &:before {
+      content: '-';
+      color: $green;
+      font-size: 2em;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &[aria-expanded=false] {
+    &:before {
+      content: '+';
+      color: $green;
+      font-size: 2em;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+}

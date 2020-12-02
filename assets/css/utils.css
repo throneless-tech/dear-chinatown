@@ -5,11 +5,11 @@ Error: Undefined variable: "$breakpoints".
 1: /* Basic utility styles *\/
 2: 
 3: $bp-sm: map-get($breakpoints, sm);
-4: $off-white: map-get($colors, offWhite);
+4: $bp-lg: map-get($breakpoints, lg);
 5: 
-6: body {
-7:   background-color: $off-white;
-8: }
+6: $off-white: map-get($colors, offWhite);
+7: 
+8: body {
 
 Backtrace:
 assets/css/scss/utils.scss:3
@@ -63,4 +63,4 @@ assets/css/scss/utils.scss:3
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 3 of assets/css/scss/utils.scss\A \A 1: /* Basic utility styles */\A 2: \A 3: $bp-sm: map-get($breakpoints, sm);\A 4: $off-white: map-get($colors, offWhite);\A 5: \A 6: body {\A 7:   background-color: $off-white;\A 8: }"; }
+  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 3 of assets/css/scss/utils.scss\A \A 1: /* Basic utility styles */\A 2: \A 3: $bp-sm: map-get($breakpoints, sm);\A 4: $bp-lg: map-get($breakpoints, lg);\A 5: \A 6: $off-white: map-get($colors, offWhite);\A 7: \A 8: body {"; }

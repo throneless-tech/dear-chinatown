@@ -46,6 +46,15 @@ $yellow: map-get($colors, yellow);
         padding-right: 40px;
         padding-top: 20px;
       }
+
+      &-item {
+        display: flex;
+        flex-direction: row-reverse;
+        
+        &:not(:last-child) {
+          border-bottom: 1px solid $green;
+        }
+      }// end standout item
     }// end standout
   }// end main
 

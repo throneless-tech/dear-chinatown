@@ -1,6 +1,6 @@
 {{ define "main" }}
 
-{{ partial "header.html" }}
+{{ partial "header.html" . }}
 
 {{ if .IsHome }}
   <div class="home">
@@ -12,23 +12,48 @@
         <span class="f-bold">Dear Chinatown</span> is ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
       </div>
       <div class="main-standout">
-        <h2>Problem</h2>
-        <p>
-          Statement, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-        </p>
-        <p>
-          Description, voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
-      <div class="">
-        <h2>Audience</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <h2>Mission</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
+        <div class="main-standout-item main-standout-item-problem">
+          <button class="expand-button" type="button" data-expands="problem" data-expands-class="is-expanded" data-expands-height>
+            <span class="vh" data-expands-text="Close">Open</span>
+          </button>
+          <div>
+            <h2>Problem</h2>
+            <div class="expandable" id="problem">
+              <p>
+                Statement, lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
+              </p>
+              <p>
+                Description, voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="main-standout-item main-standout-item-audience">
+          <button class="expand-button" type="button" data-expands="audience" data-expands-class="is-expanded" data-expands-height>
+            <span class="vh" data-expands-text="Close">Open</span>
+          </button>
+          <div>
+            <h2>Audience</h2>
+            <div class="expandable" id="audience">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="main-standout-item main-standout-item-mission">
+          <button class="expand-button" type="button" data-expands="mission" data-expands-class="is-expanded" data-expands-height>
+            <span class="vh" data-expands-text="Close">Open</span>
+          </button>
+          <div>
+            <h2>Mission</h2>
+            <div class="expandable" id="mission">
+              <p>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </main>
     <aside class="aside home-item">
@@ -93,12 +118,14 @@
     </p>
   </div>
 {{else}}
-  <h1 class="font-sans text-4xl">{{.Title}}</h1>
-  <div>
-    {{.Content}}
+  <div class="page">
+    <h1 class="font-sans text-4xl">{{.Title}}</h1>
+    <div>
+      {{.Content}}
+    </div>
   </div>
 {{ end }}
 
-{{ partial "footer.html" }}
+{{ partial "footer.html" . }}
 
 {{ end }}
