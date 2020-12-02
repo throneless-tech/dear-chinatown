@@ -1,6 +1,8 @@
 /* Basic utility styles */
 
 $bp-sm: map-get($breakpoints, sm);
+$bp-lg: map-get($breakpoints, lg);
+
 $off-white: map-get($colors, offWhite);
 
 body {
@@ -9,6 +11,7 @@ body {
 
 // container wrap
 .wrap {
+  max-width: $bp-lg;
   padding-left: 10px;
   padding-right: 10px;
 

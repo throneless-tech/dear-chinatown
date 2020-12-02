@@ -1,8 +1,12 @@
 {{ define "main" }}
+  {{ partial "header.html" . }}
+
   <h1>{{ .Title }}</h1>
   {{ .Content }}
 
   {{ if path.Base "map" }}
     {{ partial "map.html" }}
   {{ end }}
+
+  {{ partial "footer.html" . }}
 {{ end }}
