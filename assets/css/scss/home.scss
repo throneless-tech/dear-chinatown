@@ -13,22 +13,23 @@ $yellow: map-get($colors, yellow);
   position: relative;
 
   &-background {
-    left: -10%;
+    left: 0;
     overflow: hidden;
     position: absolute;
-    right: -10%;
-    top: 7%;
-    width: 120vw;
+    top: 50%;
+    width: 100%;
     z-index: -1;
 
     &-image {
       min-height: 700px;
       object-fit: cover;
-      width: 100%;
+      width: 100%
     }
 
     @media (min-width: $bp-sm) {
-      top: 10%;
+      background-color: $light-green;
+      min-height: 1500px;
+      top: 40%;
     }
   }// end background
 
@@ -148,6 +149,8 @@ $yellow: map-get($colors, yellow);
 
 .prefooter {
   background-color: $light-green;
+  padding-bottom: 30px;
+  padding-top: 30px;
 
   & .sponsors {
     margin-top: 10px;

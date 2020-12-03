@@ -72,25 +72,25 @@ body {
     font-family: 'Red Rose', cursive;
     font-size: 1.5em;
     font-weight: 400;
-    line-height: 1em; }
+    line-height: 1.5em; }
   body h4 {
     color: #064E3C;
     font-family: 'Red Rose', cursive;
     font-size: 1.25em;
     font-weight: 300;
-    line-height: 1em; }
+    line-height: 1.5em; }
   body h5 {
     color: #064E3C;
     font-family: 'Red Rose', cursive;
     font-size: 1.1em;
     font-weight: 400;
-    line-height: 1em; }
+    line-height: 1.5em; }
   body h6 {
     color: #064E3C;
     font-family: 'Red Rose', cursive;
     font-size: 0.8em;
     font-weight: 300;
-    line-height: 1em;
+    line-height: 1.5em;
     text-transform: uppercase; }
   body p {
     font-size: 1em;
@@ -166,6 +166,7 @@ body {
 /* Footer styles */
 .footer {
   background-color: #064E3C;
+  overflow: hidden;
   padding-bottom: 40px; }
   .footer-border {
     margin-bottom: 40px; }
@@ -195,12 +196,11 @@ body {
 .home {
   position: relative; }
   .home-background {
-    left: -10%;
+    left: 0;
     overflow: hidden;
     position: absolute;
-    right: -10%;
-    top: 7%;
-    width: 120vw;
+    top: 50%;
+    width: 100%;
     z-index: -1; }
     .home-background-image {
       min-height: 700px;
@@ -208,7 +208,9 @@ body {
       width: 100%; }
     @media (min-width: 768px) {
       .home-background {
-        top: 10%; } }
+        background-color: #017653;
+        min-height: 1500px;
+        top: 40%; } }
   @media (min-width: 768px) {
     .home-item {
       margin-left: 126px; } }
@@ -278,7 +280,9 @@ body {
       margin-left: -126px; } }
 
 .prefooter {
-  background-color: #017653; }
+  background-color: #017653;
+  padding-bottom: 30px;
+  padding-top: 30px; }
   .prefooter .sponsors {
     margin-top: 10px;
     margin-bottom: 30px; }
