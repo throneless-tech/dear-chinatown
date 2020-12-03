@@ -3,4 +3,4 @@ title: Chinatown Map
 type: page
 ---
 
-This is a test
+A community-sourced map of the places and spaces identified by past and present residents and community leaders.
