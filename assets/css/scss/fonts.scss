@@ -2,6 +2,7 @@
 $green: map-get($colors, green);
 $off-white: map-get($colors, offWhite);
 $red: map-get($colors, red);
+$yellow: map-get($colors, yellow);
 
 body {
   font-family: 'Source Serif Pro', serif;
@@ -81,10 +82,18 @@ body {
   }
 
   &-green {
-    color: $green;
+    color: $green !important;
+  }
+
+  &-off-white {
+    color: $off-white !important;
   }
 
   &-rose {
     font-family: 'Red Rose', cursive;
+  }
+
+  &-yellow {
+    color: $yellow !important;
   }
 }// end font classes

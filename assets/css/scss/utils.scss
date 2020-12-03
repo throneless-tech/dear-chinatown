@@ -13,8 +13,8 @@ body {
 .wrap {
   max-width: $bp-lg;
   overflow: hidden;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   @media (min-width: $bp-sm) {
     padding-left: 120px;
