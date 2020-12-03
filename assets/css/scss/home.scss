@@ -2,6 +2,7 @@
 
 $bp-sm: map-get($breakpoints, sm);
 $gutter: 126px;
+$gutter-sponsors: 100px;
 
 $green: map-get($colors, green);
 $light-green: map-get($colors, greenLight);
@@ -89,6 +90,7 @@ $yellow: map-get($colors, yellow);
       display: flex;
       flex-direction: column;
       margin-bottom: 30px;
+      position: relative;
 
       &-image {
         object-fit: cover;
@@ -103,7 +105,6 @@ $yellow: map-get($colors, yellow);
       }// end aside item description
 
       &-link {
-
         &-text {
           color: $yellow;
 
@@ -111,18 +112,26 @@ $yellow: map-get($colors, yellow);
             padding-left: 0;
             transition: 500ms;
           }
-
-          &:active, &:focus, &:hover {
-            :last-child {
-              padding-left: 10px;
-              transition: 500ms;
-            }
-          }
-        }
+        }// end text
 
         &-hidden {
+          bottom: 0;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 100%;
 
-        }
+          &:active, &:focus, &:hover {
+            + .aside-item-link-text {
+              :last-child {
+                padding-left: 10px;
+                transition: 500ms;
+              }
+            }
+          }
+        }// end hidden
       }// end aside item link
 
       @media (min-width: $bp-sm) {
@@ -136,3 +145,67 @@ $yellow: map-get($colors, yellow);
     margin-left: -$gutter;
   }
 }// end home
+
+.prefooter {
+  background-color: $green;
+
+  & .sponsors {
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    &-item {
+      margin-bottom: 20px;
+      position: relative;
+
+      &-link {
+        margin-top: 10px;
+
+        &-text {
+          color: $yellow;
+          position: relative;
+
+          :last-child {
+            position: absolute;
+            right: -30px;
+            top: 6px;
+            transition: 500ms;
+          }
+        }
+
+        &-hidden {
+          bottom: 0;
+          height: 100%;
+          left: 0;
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 100%;
+
+          &:active, &:focus, &:hover {
+            + .sponsors-item-link-text {
+              :last-child {
+                right: -40px;
+                transition: 500ms;
+              }
+            }
+          }
+        }// end hidden
+      }// end sponsors item link
+
+      @media (min-width: $bp-sm) {
+        margin-bottom: 0;
+        margin-left: $gutter-sponsors;
+      }
+
+    }// end sponsors item
+
+    @media (min-width: $bp-sm) {
+      display: flex;
+      margin-left: -$gutter-sponsors;
+    }
+  }// end sponsors
+
+  @media (min-width: $bp-sm) {
+    padding-top: 100px;
+  }
+}// end prefooter

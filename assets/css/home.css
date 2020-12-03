@@ -6,10 +6,10 @@ Error: Undefined variable: "$breakpoints".
 2: 
 3: $bp-sm: map-get($breakpoints, sm);
 4: $gutter: 126px;
-5: 
-6: $green: map-get($colors, green);
-7: $light-green: map-get($colors, greenLight);
-8: $off-white: map-get($colors, offWhite);
+5: $gutter-sponsors: 100px;
+6: 
+7: $green: map-get($colors, green);
+8: $light-green: map-get($colors, greenLight);
 
 Backtrace:
 assets/css/scss/home.scss:3
@@ -63,4 +63,4 @@ assets/css/scss/home.scss:3
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 3 of assets/css/scss/home.scss\A \A 1: /* Homepage styles */\A 2: \A 3: $bp-sm: map-get($breakpoints, sm);\A 4: $gutter: 126px;\A 5: \A 6: $green: map-get($colors, green);\A 7: $light-green: map-get($colors, greenLight);\A 8: $off-white: map-get($colors, offWhite);"; }
+  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 3 of assets/css/scss/home.scss\A \A 1: /* Homepage styles */\A 2: \A 3: $bp-sm: map-get($breakpoints, sm);\A 4: $gutter: 126px;\A 5: $gutter-sponsors: 100px;\A 6: \A 7: $green: map-get($colors, green);\A 8: $light-green: map-get($colors, greenLight);"; }
