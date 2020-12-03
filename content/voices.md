@@ -1,5 +1,5 @@
 ---
-title: Chinatown Speaks
+title: Chinatown Voices
 type: page
 ---
 
