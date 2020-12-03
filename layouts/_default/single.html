@@ -1,12 +1,14 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
 
-  <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  <div class="wrap">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
 
-  {{ if path.Base "map" }}
-    {{ partial "map.html" }}
-  {{ end }}
+    {{ with .Site.GetPage "section" "map" }}
+      {{ partial "map.html" }}
+    {{ end }}
+  </div>
 
   {{ partial "footer.html" . }}
 {{ end }}
