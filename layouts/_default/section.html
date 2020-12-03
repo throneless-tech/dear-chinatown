@@ -1,0 +1,14 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+
+  <div class="wrap">
+    <h1>{{ .Title }}</h1>
+    {{ .Content }}
+
+    {{ with .Site.GetPage "section" "map" }}
+      {{ partial "map.html" }}
+    {{ end }}
+  </div>
+
+  {{ partial "footer.html" . }}
+{{ end }}

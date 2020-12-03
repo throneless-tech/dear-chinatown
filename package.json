@@ -13,7 +13,7 @@
     "start:dev": "run-p dev:parcel dev:hugo",
     "dev:hugo": "cross-env NODE_ENV=development hugo server --gc --disableFastRender --navigateToChanged",
     "dev:parcel": "cross-env NODE_ENV=development parcel watch ./assets/index.js --out-dir assets/output",
-    "build:assets": "cross-env NODE_ENV=development parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting  --no-cache",
+    "build:assets": "cross-env NODE_ENV=development parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache",
     "deploy:assets": "cross-env NODE_ENV=production parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache",
     "build:hugo": "cross-env NODE_ENV=production hugo --gc --minify"
   },
@@ -23,7 +23,6 @@
     "airtable": "^0.10.1",
     "autoprefixer": "^10.0.1",
     "cross-env": "^7.0.2",
-    "dotenv": "^8.2.0",
     "mapbox-gl": "^1.12.0",
     "npm-run-all": "^4.1.5",
     "parcel-bundler": "^1.12.4",
