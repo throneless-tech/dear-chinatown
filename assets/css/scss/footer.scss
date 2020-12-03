@@ -1,0 +1,55 @@
+/* Footer styles */
+
+$bp-sm: map-get($breakpoints, sm);
+
+$green: map-get($colors, green);
+$off-white: map-get($colors, offWhite);
+$yellow: map-get($colors, yellow);
+
+.footer {
+  background-color: $green;
+  padding-bottom: 40px;
+
+  &-border {
+    margin-bottom: 40px;
+  }
+
+  &-link {
+    color: $yellow;
+    font-family: 'Source Serif Pro', serif;
+
+    &-text {
+
+      svg {
+        padding-left: 20px;
+        max-width: 28px;
+        transform: scale(1);
+      }
+
+      &:active, &:focus, &:hover {
+        transform: scale(1.1);
+        transition: 500ms;
+      }
+    }
+
+    &:active, &:focus, &:hover {
+      text-decoration: underline;
+    }
+  }// end footer link
+
+  &-flex {
+    font-size: 0.75em;
+
+    &-item {
+      &:last-child {
+        align-items: center;
+        display: flex;
+      }
+    }
+
+    @media (min-width: $bp-sm) {
+      display: flex;
+      justify-content: space-between;
+    }
+  }// end footer flex
+}//end footer

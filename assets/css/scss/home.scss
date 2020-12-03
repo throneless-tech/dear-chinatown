@@ -147,7 +147,7 @@ $yellow: map-get($colors, yellow);
 }// end home
 
 .prefooter {
-  background-color: $green;
+  background-color: $light-green;
 
   & .sponsors {
     margin-top: 10px;
@@ -206,6 +206,7 @@ $yellow: map-get($colors, yellow);
   }// end sponsors
 
   @media (min-width: $bp-sm) {
+    padding-bottom: 80px;
     padding-top: 100px;
   }
 }// end prefooter
