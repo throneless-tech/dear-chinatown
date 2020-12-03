@@ -8,6 +8,7 @@ $yellow: map-get($colors, yellow);
 
 .footer {
   background-color: $green;
+  overflow: hidden;
   padding-bottom: 40px;
 
   &-border {
