@@ -95,8 +95,6 @@ body {
   body p {
     font-size: 1em;
     margin-bottom: 1em; }
-    body p + p {
-      margin-bottom: 0; }
   body a {
     color: #CE0000;
     font-family: 'Red Rose', cursive;
@@ -435,7 +433,7 @@ body {
   margin-right: auto;
   margin-bottom: 30px;
   margin-top: 30px;
-  max-width: 465px; }
+  max-width: 920px; }
   .assets-item {
     align-items: center;
     display: flex; }
@@ -443,6 +441,16 @@ body {
       height: 15px;
       margin-right: 12px;
       width: 15px; }
+    .assets-item-list {
+      margin-top: 10px; }
+      .assets-item-list-item {
+        color: #4A4A4A;
+        margin-bottom: 5px; }
+      @media (min-width: 768px) {
+        .assets-item-list {
+          display: grid;
+          grid-column-gap: 40px;
+          grid-template-columns: 50% 50%; } }
   .assets-existing {
     margin-bottom: 30px; }
     @media (min-width: 768px) {

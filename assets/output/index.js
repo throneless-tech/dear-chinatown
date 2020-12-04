@@ -33301,6 +33301,8 @@ var _airtable = _interopRequireDefault(require("airtable"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const map = document.getElementById('map');
+const existing = document.getElementById('existing');
+const past = document.getElementById('past');
 
 if (!!map) {
   const base = new _airtable.default({
@@ -33326,29 +33328,33 @@ if (!!map) {
 
     ;
     let coordinates, properties;
-    assets.forEach(point => {
-      fetch("http://open.mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.fields.Address)).then(response => response.json()).then(data => {
-        coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
-        properties = point.fields;
-        let feature = {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": coordinates
-          },
-          "properties": properties
-        };
-        collection.features.push(feature);
-      });
+    assets.forEach((point, i) => {
+      if (point.get("Existing?")) {
+        existing.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(point.get("Name"));
+      } else {
+        past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(point.get("Name"));
+      } // fetch(`http://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
+      //     properties = point.fields;
+      //     let feature = {
+      //       "type": "Feature",
+      //       "geometry": {
+      //         "type": "Point", "coordinates": coordinates
+      //       },
+      //       "properties": properties
+      //     };
+      //     collection.features.push(feature);
+      //   });
+
     });
   });
   _mapboxGl.default.accessToken = "pk.eyJ1IjoibWxld2luc21pdGgiLCJhIjoiY2tleDMwMGQwMDF5azJ3cDM5aWd5aGZzcCJ9.NRVX39VAQ9o5ZoM-cGWXPg";
-  const existing = document.getElementById('existing');
-  const past = document.getElementById('past');
   const map = new _mapboxGl.default.Map({
     center: [-77.02249, 38.89920],
     container: 'map',
-    style: proces.env.MAPBOX_STYLE,
+    style: "mapbox://styles/mlewinsmith/ckgfjvxed869h19o98gtunc62",
     zoom: 15
   });
   map.on('load', () => {
@@ -33390,8 +33396,6 @@ if (!!map) {
     map.setPaintProperty('building', 'fill-color', ['interpolate', ['exponential', 0.5], ['zoom'], 15, '#e2714b', 22, '#eee695']);
     map.setPaintProperty('building', 'fill-opacity', ['interpolate', ['exponential', 0.5], ['zoom'], 15, 0, 22, 1]);
   });
-  existing.innerHTML = 'test one two';
-  past.innerHTML = 'three four';
 }
 },{"mapbox-gl":"../node_modules/mapbox-gl/dist/mapbox-gl.js","airtable":"../node_modules/airtable/lib/airtable.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -33431,7 +33435,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52447" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53249" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

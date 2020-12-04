@@ -117,7 +117,7 @@ $map-margin: 40px;
       &:not(:last-child) {
         border-bottom: 0.75px solid $gray;
       }
-    }
+    }// end assets item
   }// end legend assets
 }// end legend
 
@@ -126,7 +126,7 @@ $map-margin: 40px;
   margin-right: auto;
   margin-bottom: 30px;
   margin-top: 30px;
-  max-width: 465px;
+  max-width: 920px;
 
   &-item {
     align-items: center;
@@ -138,6 +138,20 @@ $map-margin: 40px;
       width: 15px;
     }
 
+    &-list {
+      margin-top: 10px;
+
+      &-item {
+        color: $dark-gray;
+        margin-bottom: 5px;
+      }
+
+      @media (min-width: $bp-sm) {
+        display: grid;
+        grid-column-gap: 40px;
+        grid-template-columns: 50% 50%;
+      }
+    }// end assets item list
   }// end assets item
 
   &-existing {
