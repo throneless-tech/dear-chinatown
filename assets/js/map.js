@@ -2,6 +2,8 @@ import mapboxgl from 'mapbox-gl';
 import Airtable from 'airtable';
 
 const map = document.getElementById('map');
+const existing = document.getElementById('existing');
+const past = document.getElementById('past');
 
 if (!!map) {
   const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.AIRTABLE_BASE);
@@ -20,33 +22,35 @@ if (!!map) {
     }, function done(err) {
         if (err) { console.error(err); return; };
         let coordinates, properties;
-        assets.forEach(point => {
-          fetch(`http://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
-            .then(response => response.json())
-            .then(data => {
-              coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
-              properties = point.fields;
-              let feature = {
-                "type": "Feature",
-                "geometry": {
-                  "type": "Point", "coordinates": coordinates
-                },
-                "properties": properties
-              };
-              collection.features.push(feature);
-            });
+        assets.forEach((point, i) => {
+          if (point.get("Existing?")) {
+            existing.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
+          } else {
+            past.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
+          }
+          // fetch(`http://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
+          //   .then(response => response.json())
+          //   .then(data => {
+          //     coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
+          //     properties = point.fields;
+          //     let feature = {
+          //       "type": "Feature",
+          //       "geometry": {
+          //         "type": "Point", "coordinates": coordinates
+          //       },
+          //       "properties": properties
+          //     };
+          //     collection.features.push(feature);
+          //   });
         })
     });
 
   mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
-  const existing = document.getElementById('existing');
-  const past = document.getElementById('past');
-
   const map = new mapboxgl.Map({
     center: [-77.02249, 38.89920],
     container: 'map',
-    style: proces.env.MAPBOX_STYLE,
+    style: process.env.MAPBOX_STYLE,
     zoom: 15,
   });
 
@@ -116,8 +120,4 @@ if (!!map) {
       1
     ]);
   });
-
-  existing.innerHTML = 'test one two';
-  past.innerHTML = 'three four';
-
 }
