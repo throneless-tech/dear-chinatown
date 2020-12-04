@@ -7,7 +7,7 @@
       {{ .Content }}
     </div>
 
-    {{ with .Site.GetPage "section" "map" }}
+    {{ if eq .Section "map" }}
       {{ partial "map.html" }}
     {{ end }}
   </div>
