@@ -131,6 +131,8 @@ if (!!map) {
 
     map.on('click', 'places', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
+      const name = e.features[0].properties.Name;
+      const address = e.features[0].properties.Address;
       const description = e.features[0].properties.Quote;
       const type = e.features[0].properties.Category;
 
@@ -143,7 +145,7 @@ if (!!map) {
 
       new mapboxgl.Popup()
         .setLngLat(coordinates)
-        .setHTML(`<p>${type}</p><p>${description}</p>`)
+        .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
         .addTo(map);
     });
 

@@ -59,6 +59,8 @@ body {
   color: #FEFEF1 !important; }
 .f-rose {
   font-family: 'Red Rose', cursive; }
+.f-serif {
+  font-family: 'Source Serif Pro', serif; }
 .f-yellow {
   color: #EFC01C !important; }
 
@@ -317,8 +319,32 @@ body {
   width: 100%; }
 
 .mapboxgl-popup {
-  max-width: 400px;
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif; }
+  max-width: 350px !important; }
+  .mapboxgl-popup-tip {
+    display: none; }
+  .mapboxgl-popup-content {
+    background-color: #FEFEF1;
+    padding: 20px;
+    position: relative; }
+    .mapboxgl-popup-content-title {
+      font-size: 1.5em; }
+    .mapboxgl-popup-content-info {
+      font-size: 1.2em; }
+    .mapboxgl-popup-content-quote {
+      font-size: 1.2em; }
+    .mapboxgl-popup-content div {
+      margin-bottom: 5px; }
+    .mapboxgl-popup-content:before {
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid #FEFEF1;
+      bottom: -15px;
+      content: '';
+      height: 0;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      width: 0; }
 
 .map {
   border-bottom: 0.75px solid #CAC9B3;

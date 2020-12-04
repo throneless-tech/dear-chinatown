@@ -5,6 +5,7 @@ $bp-sm: map-get($breakpoints, sm);
 $dark-gray: map-get($colors, grayDark);
 $gray: map-get($colors, gray);
 $green: map-get($colors, green);
+$off-white: map-get($colors, offWhite);
 
 $business-color: #D9891C;
 $community-color: #D42A2A;
@@ -23,9 +24,47 @@ $map-margin: 40px;
 };
 
 .mapboxgl-popup {
-  max-width: 400px;
-  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-}
+  max-width: 350px !important;
+
+  &-tip {
+    display: none;
+  }
+
+  &-content {
+    background-color: $off-white;
+    padding: 20px;
+    position: relative;
+
+    &-title {
+      font-size: 1.5em;
+    }
+
+    &-info {
+      font-size: 1.2em;
+    }
+
+    &-quote {
+      font-size: 1.2em;
+    }
+
+    div {
+      margin-bottom: 5px;
+    }
+
+    &:before {
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 15px solid $off-white;
+      bottom: -15px;
+      content: '';
+      height: 0;
+      left: 50%;
+      position: absolute;
+      transform: translateX(-50%);
+      width: 0;
+    }
+  }// end content
+}// end mapbox gl popup
 
 .map {
   border-bottom: 0.75px solid $gray;
