@@ -421,8 +421,31 @@ body {
       .legend-assets-item-button:before {
         font-size: 1.5em !important; }
     .legend-assets-item-content {
+      overflow: hidden;
       padding-left: 40px;
-      padding-right: 15px; }
+      padding-right: 15px;
+      position: relative; }
+      .legend-assets-item-content :before {
+        content: "";
+        height: 100%;
+        left: 0;
+        position: absolute;
+        width: 10px; }
+      .legend-assets-item-content#BusinessContent :before {
+        background-color: #D9891C;
+        content: ""; }
+      .legend-assets-item-content#CommunityContent :before {
+        background-color: #D42A2A; }
+      .legend-assets-item-content#FamilyContent :before {
+        background-color: rgba(212, 42, 42, 0.3); }
+      .legend-assets-item-content#LandmarkContent :before {
+        background-color: #878484; }
+      .legend-assets-item-content#MediaContent :before {
+        background-color: #EFC01C; }
+      .legend-assets-item-content#ParkContent :before {
+        background-color: #064E3C; }
+      .legend-assets-item-content#RecreationContent :before {
+        background-color: #BAD9C6; }
     .legend-assets-item-list-item {
       font-size: 0.8em; }
     .legend-assets-item:not(:last-child) {

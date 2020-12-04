@@ -1,10 +1,12 @@
 import mapboxgl from 'mapbox-gl';
 import Airtable from 'airtable';
+import ExpandToggle from "@threespot/expand-toggle";
 
 const map = document.getElementById('map');
-const legendLists = document.getElementsByClassName('legend-assets-item-list');
+const legendLists = [...(document.getElementsByClassName('legend-assets-item-list'))];
 const existing = document.getElementById('existing');
 const past = document.getElementById('past');
+const toggles = document.querySelectorAll("[data-expands]");
 
 if (!!map) {
   const base = new Airtable({apiKey: process.env.AIRTABLE_API_KEY}).base(process.env.AIRTABLE_BASE);
@@ -24,19 +26,24 @@ if (!!map) {
         if (err) { console.error(err); return; };
         let coordinates, properties;
         assets.forEach((point, i) => {
-          // legendLists.forEach((list) => {
-          //   if(point.get("Category") == list.id) {
-          //     const item = `<li class="legend-assets-item-list-item">${point.get("Name")}</li>`;
-          //     list.appendChild(item);
-          //   }
-          // });
-          //
+          let name = point.get("Name");
+          legendLists.forEach((list) => {
+            if(point.get("Category") == list.id) {
+              let item = document.createElement("li");
+              item.classList.add("legend-assets-item-list-item");
+              item.innerHTML = name;
+              list.appendChild(item);
+            }
+            list.classList.add("expandable");
+            toggles.forEach(el => new ExpandToggle(el));
+          });
+
           if (point.get("Existing?")) {
-            existing.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
+            existing.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${name}`;
           } else {
-            past.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
+            past.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${name}`;
           }
-          fetch(`http://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
+          fetch(`https://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
             .then(response => response.json())
             .then(data => {
               coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
@@ -72,17 +79,59 @@ if (!!map) {
 
     map.addLayer({
       'id': 'places',
-      'type': 'symbol',
+      'type': 'circle',
       'source': 'places',
-      'layout': {
-        'icon-image': 'music-15',
-        'icon-allow-overlap': true
+    });
+
+    // var layers = map.getStyle().layers;
+    // var labelLayerId;
+    // for (var i = 0; i < layers.length; i++) {
+    //   if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+    //     labelLayerId = layers[i].id;
+    //     break;
+    //   }
+    // }
+
+    map.addLayer({
+      'id': '3d-buildings',
+      'source': 'composite',
+      'source-layer': 'building',
+      'type': 'fill',
+      'minzoom': 1,
+      'paint': {
+        'fill-color': '#E0DFC8',
+      },
+    }, 'places');
+
+    map.addSource('currentBuildings', {
+      type: 'geojson',
+      data: {
+        "type": "FeatureCollection",
+        "features": [],
       }
+    });
+
+    map.addLayer({
+      "id": "highlight",
+      "source": "currentBuildings",
+      'type': 'line',
+      'minzoom': 1,
+      'paint': {
+      	'line-color': '#f00',
+        'line-width': 3
+      }
+    }, "places");
+
+    map.on('click', '3d-buildings', function(e) {
+      map.getSource('currentBuildings').setData({
+        "type": "FeatureCollection",
+        "features": e.features
+      });
     });
 
     map.on('click', 'places', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
-      const description = e.features[0].properties.Description;
+      const description = e.features[0].properties.Quote;
       const type = e.features[0].properties.Category;
 
       // Ensure that if the map is zoomed out such that multiple
@@ -107,25 +156,5 @@ if (!!map) {
     map.on('mouseleave', 'places', () => {
       map.getCanvas().style.cursor = '';
     });
-
-    map.setPaintProperty('building', 'fill-color', [
-      'interpolate',
-      ['exponential', 0.5],
-      ['zoom'],
-      15,
-      '#e2714b',
-      22,
-      '#eee695'
-    ]);
-
-    map.setPaintProperty('building', 'fill-opacity', [
-      'interpolate',
-      ['exponential', 0.5],
-      ['zoom'],
-      15,
-      0,
-      22,
-      1
-    ]);
   });
 }

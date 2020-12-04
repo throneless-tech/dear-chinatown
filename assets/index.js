@@ -4,5 +4,5 @@ import "./css/styles.css";
 
 import "./js/nojs.js";
 
-import "./js/expand-toggle.js";
 import "./js/map.js";
+import "./js/expand-toggle.js";
