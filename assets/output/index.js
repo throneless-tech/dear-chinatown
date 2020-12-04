@@ -33342,7 +33342,7 @@ if (!!map) {
       });
     });
   });
-  _mapboxGl.default.accessToken = undefined;
+  _mapboxGl.default.accessToken = "pk.eyJ1IjoibWxld2luc21pdGgiLCJhIjoiY2tleDMwMGQwMDF5azJ3cDM5aWd5aGZzcCJ9.NRVX39VAQ9o5ZoM-cGWXPg";
   const existing = document.getElementById('existing');
   const past = document.getElementById('past');
   const map = new _mapboxGl.default.Map({
@@ -33431,7 +33431,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51487" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52371" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
