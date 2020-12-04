@@ -24,13 +24,13 @@ if (!!map) {
         if (err) { console.error(err); return; };
         let coordinates, properties;
         assets.forEach((point, i) => {
-          legendLists.forEach((list) => {
-            if(point.get("Category") == list.id) {
-              const item = `<li class="legend-assets-item-list-item">${point.get("Name")}</li>`;
-              list.appendChild(item);
-            }
-          });
-
+          // legendLists.forEach((list) => {
+          //   if(point.get("Category") == list.id) {
+          //     const item = `<li class="legend-assets-item-list-item">${point.get("Name")}</li>`;
+          //     list.appendChild(item);
+          //   }
+          // });
+          //
           if (point.get("Existing?")) {
             existing.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
           } else {
