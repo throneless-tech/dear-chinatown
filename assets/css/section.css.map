@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,oBAAoB;AAGlB,gBAAU;EACR,aAAa,EAAE,IAAI",
+"sources": ["scss/section.scss"],
+"names": [],
+"file": "section.css"
+}

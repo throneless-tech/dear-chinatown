@@ -1,0 +1,16 @@
+{{ define "main" }}
+  {{ partial "header.html" . }}
+
+  <div class="section wrap">
+    <h1>{{ .Title }}</h1>
+    <div class="section-content f-green">
+      {{ .Content }}
+    </div>
+
+    {{ if eq .Section "map" }}
+      {{ partial "map.html" }}
+    {{ end }}
+  </div>
+
+  {{ partial "footer.html" . }}
+{{ end }}
