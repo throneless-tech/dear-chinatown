@@ -14,7 +14,7 @@
     "dev:hugo": "cross-env NODE_ENV=development hugo server --gc --disableFastRender --navigateToChanged",
     "dev:parcel": "cross-env NODE_ENV=development parcel watch ./assets/index.js --out-dir assets/output",
     "build:assets": "cross-env NODE_ENV=development parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache",
-    "deploy:assets": "cross-env NODE_ENV=production parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache",
+    "deploy:assets": "cross-env NODE_ENV=production parcel build ./assets/index.js --out-dir assets/output --experimental-scope-hoisting --no-cache --public-url /public --target=node10",
     "build:hugo": "cross-env NODE_ENV=production hugo --gc --minify"
   },
   "dependencies": {

@@ -33342,16 +33342,17 @@ if (!!map) {
       });
     });
   });
-  _mapboxGl.default.accessToken = 'pk.eyJ1IjoicmdhaW5lcyIsImEiOiJjamZuenFmZXIwa2JuMndwZXd1eGQwcTNuIn0.TbNK-TNQxiGUlWFdzEEavw';
+  _mapboxGl.default.accessToken = 'pk.eyJ1IjoibWxld2luc21pdGgiLCJhIjoiY2tleDMwMGQwMDF5azJ3cDM5aWd5aGZzcCJ9.NRVX39VAQ9o5ZoM-cGWXPg';
   const existing = document.getElementById('existing');
   const past = document.getElementById('past');
   const map = new _mapboxGl.default.Map({
     center: [-77.02249, 38.89920],
     container: 'map',
-    style: 'mapbox://styles/rgaines/cjfsbgick6y572rl806on1auc',
+    style: 'mapbox://styles/mlewinsmith/ckgfjvxed869h19o98gtunc62',
     zoom: 15
   });
   map.on('load', () => {
+    map.resize();
     map.addSource('places', {
       'type': 'geojson',
       'data': collection
@@ -33430,7 +33431,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63250" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51487" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
