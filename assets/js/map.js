@@ -2,6 +2,7 @@ import mapboxgl from 'mapbox-gl';
 import Airtable from 'airtable';
 
 const map = document.getElementById('map');
+const legendLists = document.getElementsByClassName('legend-assets-item-list');
 const existing = document.getElementById('existing');
 const past = document.getElementById('past');
 
@@ -23,25 +24,32 @@ if (!!map) {
         if (err) { console.error(err); return; };
         let coordinates, properties;
         assets.forEach((point, i) => {
+          legendLists.forEach((list) => {
+            if(point.get("Category") == list.id) {
+              const item = `<li class="legend-assets-item-list-item">${point.get("Name")}</li>`;
+              list.appendChild(item);
+            }
+          });
+
           if (point.get("Existing?")) {
             existing.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
           } else {
             past.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${point.get("Name")}`;
           }
-          // fetch(`http://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
-          //   .then(response => response.json())
-          //   .then(data => {
-          //     coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
-          //     properties = point.fields;
-          //     let feature = {
-          //       "type": "Feature",
-          //       "geometry": {
-          //         "type": "Point", "coordinates": coordinates
-          //       },
-          //       "properties": properties
-          //     };
-          //     collection.features.push(feature);
-          //   });
+          fetch(`http://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
+            .then(response => response.json())
+            .then(data => {
+              coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
+              properties = point.fields;
+              let feature = {
+                "type": "Feature",
+                "geometry": {
+                  "type": "Point", "coordinates": coordinates
+                },
+                "properties": properties
+              };
+              collection.features.push(feature);
+            });
         })
     });
 
