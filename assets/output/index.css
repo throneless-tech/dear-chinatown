@@ -95,6 +95,8 @@ body {
   body p {
     font-size: 1em;
     margin-bottom: 1em; }
+    body p + p {
+      margin-bottom: 0; }
   body a {
     color: #CE0000;
     font-family: 'Red Rose', cursive;
