@@ -122,12 +122,12 @@ if (!!map) {
       }
     }, "places");
 
-    map.on('click', '3d-buildings', function(e) {
-      map.getSource('currentBuildings').setData({
-        "type": "FeatureCollection",
-        "features": e.features
-      });
-    });
+    // map.on('click', '3d-buildings', function(e) {
+    //   map.getSource('currentBuildings').setData({
+    //     "type": "FeatureCollection",
+    //     "features": e.features
+    //   });
+    // });
 
     map.on('click', 'places', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
