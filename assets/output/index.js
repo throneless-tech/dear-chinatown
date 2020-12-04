@@ -33262,7 +33262,7 @@ function () {
     return {
       endpointUrl: undefined || 'https://api.airtable.com',
       apiVersion: '0.1.0',
-      apiKey: "keyxWx7wbBAvu68s2",
+      apiKey: "key4kC0z4hHhtUIQh",
       noRetryIfRateLimited: false,
       requestTimeout: 300 * 1000
     };
@@ -33307,7 +33307,7 @@ const past = document.getElementById('past');
 
 if (!!map) {
   const base = new _airtable.default({
-    apiKey: "keyxWx7wbBAvu68s2"
+    apiKey: "key4kC0z4hHhtUIQh"
   }).base("appqK60gESyHauPxx");
   let assets = [];
   let collection = {
@@ -33330,13 +33330,13 @@ if (!!map) {
     ;
     let coordinates, properties;
     assets.forEach((point, i) => {
-      legendLists.forEach(list => {
-        if (point.get("Category") == list.id) {
-          const item = "<li class=\"legend-assets-item-list-item\">".concat(point.get("Name"), "</li>");
-          list.appendChild(item);
-        }
-      });
-
+      // legendLists.forEach((list) => {
+      //   if(point.get("Category") == list.id) {
+      //     const item = `<li class="legend-assets-item-list-item">${point.get("Name")}</li>`;
+      //     list.appendChild(item);
+      //   }
+      // });
+      //
       if (point.get("Existing?")) {
         existing.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(point.get("Name"));
       } else {
@@ -33443,7 +33443,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53249" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54337" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
