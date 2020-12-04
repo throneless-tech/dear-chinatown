@@ -1,10 +1,10 @@
 {{ define "main" }}
   {{ partial "header.html" . }}
 
-  <div class="wrap">
+  <div class="section wrap">
     <h1>{{ .Title }}</h1>
-    <div class="f-green">
-      {{ .Content }}      
+    <div class="section-content f-green">
+      {{ .Content }}
     </div>
 
     {{ with .Site.GetPage "section" "map" }}

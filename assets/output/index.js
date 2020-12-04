@@ -33342,13 +33342,13 @@ if (!!map) {
       });
     });
   });
-  _mapboxGl.default.accessToken = 'pk.eyJ1IjoibWxld2luc21pdGgiLCJhIjoiY2tleDMwMGQwMDF5azJ3cDM5aWd5aGZzcCJ9.NRVX39VAQ9o5ZoM-cGWXPg';
+  _mapboxGl.default.accessToken = undefined;
   const existing = document.getElementById('existing');
   const past = document.getElementById('past');
   const map = new _mapboxGl.default.Map({
     center: [-77.02249, 38.89920],
     container: 'map',
-    style: 'mapbox://styles/mlewinsmith/ckgfjvxed869h19o98gtunc62',
+    style: proces.env.MAPBOX_STYLE,
     zoom: 15
   });
   map.on('load', () => {

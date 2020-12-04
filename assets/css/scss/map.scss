@@ -120,3 +120,36 @@ $map-margin: 40px;
     }
   }// end legend assets
 }// end legend
+
+.assets {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  max-width: 465px;
+
+  &-item {
+    align-items: center;
+    display: flex;
+
+    &-svg {
+      height: 15px;
+      margin-right: 12px;
+      width: 15px;
+    }
+
+  }// end assets item
+
+  &-existing {
+    margin-bottom: 30px;
+
+    @media (min-width: $bp-sm) {
+      margin-bottom: 60px;
+    }
+  }
+
+  @media (min-width: $bp-sm) {
+    margin-bottom: 60px;
+    margin-top: 60px;
+  }
+}// end assets
