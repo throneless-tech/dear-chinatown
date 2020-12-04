@@ -3,7 +3,9 @@
 
   <div class="wrap">
     <h1>{{ .Title }}</h1>
-    {{ .Content }}
+    <div class="f-green">
+      {{ .Content }}      
+    </div>
 
     {{ with .Site.GetPage "section" "map" }}
       {{ partial "map.html" }}
