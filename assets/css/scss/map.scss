@@ -1,10 +1,155 @@
+/* Map styles */
+
+$bp-sm: map-get($breakpoints, sm);
+
+$dark-gray: map-get($colors, grayDark);
+$gray: map-get($colors, gray);
+$green: map-get($colors, green);
+
+$map-margin: 40px;
+
 #map {
   display: block;
-  height: 75%;
-  width: 75%;
+  height: 100%;
+  width: 100%;
 };
 
 .mapboxgl-popup {
   max-width: 400px;
   font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
 }
+
+.map {
+  border-bottom: 0.75px solid $gray;
+  border-top: 0.75px solid $gray;
+
+  &-item {
+
+    &:first-child {
+      @media (min-width: $bp-sm) {
+        max-width: 360px;
+        width: 30%;
+      }
+    }
+
+    &:last-child {
+      align-self: stretch;
+      height: inherit;
+      width: 70%;
+    }
+  }
+
+  @media (min-width: $bp-sm) {
+    display: flex;
+  }
+
+  &-container {
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+}// end map
+
+.legend {
+
+  &-key {
+    margin-left: $map-margin;
+    margin-right: $map-margin;
+    margin-top: 15px;
+  }
+
+  &-title {
+    color: $green;
+    font-family: 'Red Rose', cursive;
+    font-weight: bold;
+    margin-bottom: 32px;
+  }
+
+  &-guide {
+    &-item {
+      align-items: center;
+      display: flex;
+
+      &-svg {
+        height: 15px;
+        margin-right: 12px;
+        width: 15px;
+      }
+
+      &:first-child {
+        margin-bottom: 5px;
+      }
+    }// end guide item
+  }// end legend guide
+
+  &-assets {
+    margin-top: 40px;
+
+    &-item {
+      align-items: center;
+      color: $dark-gray;
+      display: flex;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      padding-bottom: 15px;
+      padding-top: 15px;
+
+      &-button {
+        margin-right: 20px;
+
+        &:before {
+          font-size: 1.5em !important;
+        }
+      }
+
+      &-content {
+        padding-left: $map-margin;
+        padding-right: 15px;
+      }
+
+      &-list {
+
+        &-item {
+          font-size: 0.8em;
+        }
+      }
+
+      &:not(:last-child) {
+        border-bottom: 0.75px solid $gray;
+      }
+    }
+  }// end legend assets
+}// end legend
+
+.assets {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  max-width: 465px;
+
+  &-item {
+    align-items: center;
+    display: flex;
+
+    &-svg {
+      height: 15px;
+      margin-right: 12px;
+      width: 15px;
+    }
+
+  }// end assets item
+
+  &-existing {
+    margin-bottom: 30px;
+
+    @media (min-width: $bp-sm) {
+      margin-bottom: 60px;
+    }
+  }
+
+  @media (min-width: $bp-sm) {
+    margin-bottom: 60px;
+    margin-top: 60px;
+  }
+}// end assets

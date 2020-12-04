@@ -38,7 +38,7 @@ if (!!map) {
         })
     });
 
-  mapboxgl.accessToken = 'pk.eyJ1IjoicmdhaW5lcyIsImEiOiJjamZuenFmZXIwa2JuMndwZXd1eGQwcTNuIn0.TbNK-TNQxiGUlWFdzEEavw';
+  mapboxgl.accessToken = process.env.MAPBOX_TOKEN;
 
   const existing = document.getElementById('existing');
   const past = document.getElementById('past');
@@ -46,11 +46,13 @@ if (!!map) {
   const map = new mapboxgl.Map({
     center: [-77.02249, 38.89920],
     container: 'map',
-    style: 'mapbox://styles/rgaines/cjfsbgick6y572rl806on1auc',
+    style: proces.env.MAPBOX_STYLE,
     zoom: 15,
   });
 
   map.on('load', () => {
+    map.resize();
+
     map.addSource('places', {
       'type': 'geojson',
       'data': collection,
