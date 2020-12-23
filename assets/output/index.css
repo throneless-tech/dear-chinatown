@@ -155,6 +155,17 @@ body {
   background: unset;
   border: none;
   position: relative; }
+  .expand-button:focus {
+    outline: none; }
+    .expand-button:focus:after {
+      content: "";
+      border: 1px dotted #064E3C;
+      height: 40px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px; }
   .expand-button[aria-expanded=true]:before {
     content: '-';
     color: #064E3C;

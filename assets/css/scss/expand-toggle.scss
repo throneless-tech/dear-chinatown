@@ -37,6 +37,21 @@ $green: map-get($colors, green);
   border: none;
   position: relative;
 
+  &:focus {
+    outline: none;
+
+    &:after {
+      content: "";
+      border: 1px dotted $green;
+      height: 40px;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 40px;
+    }
+  }
+
   &[aria-expanded=true] {
     &:before {
       content: '-';
