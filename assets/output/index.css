@@ -257,8 +257,7 @@ body {
     @media (min-width: 768px) {
       .home-background {
         background-color: #017653;
-        min-height: 1500px;
-        top: 50%; } }
+        min-height: 1500px; } }
   @media (min-width: 768px) {
     .home-item {
       margin-left: 126px; } }
@@ -267,7 +266,7 @@ body {
     font-weight: 300;
     line-height: 1.25em;
     margin-bottom: 40px;
-    margin-top: -10px;
+    margin-top: -5px;
     max-width: 760px; }
   .home .main-standout {
     background: #FEFEF1;
