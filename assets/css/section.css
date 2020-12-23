@@ -1,5 +1,7 @@
 /* Section styles */
 .section-content {
   margin-bottom: 60px; }
+  .section-content ul {
+    margin-bottom: 1em; }
 
 /*# sourceMappingURL=section.css.map */

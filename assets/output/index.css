@@ -383,6 +383,8 @@ body {
 /* Section styles */
 .section-content {
   margin-bottom: 60px; }
+  .section-content ul {
+    margin-bottom: 1em; }
 
 /* Map styles */
 #map {

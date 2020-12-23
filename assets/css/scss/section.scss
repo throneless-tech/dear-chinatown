@@ -3,5 +3,9 @@
 .section {
   &-content {
     margin-bottom: 60px;
+
+    ul {
+      margin-bottom: 1em;
+    }
   }
 }// end section
