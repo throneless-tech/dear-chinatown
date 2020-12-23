@@ -185,7 +185,7 @@ body {
     left: 0;
     overflow: hidden;
     position: absolute;
-    top: 50%;
+    top: 55%;
     width: 100%;
     z-index: -1; }
     .home-background-image {
@@ -196,13 +196,16 @@ body {
       .home-background {
         background-color: #017653;
         min-height: 1500px;
-        top: 40%; } }
+        top: 50%; } }
   @media (min-width: 768px) {
     .home-item {
       margin-left: 126px; } }
   .home .main-explainer {
+    font-size: 1.5em;
     font-weight: 300;
+    line-height: 1.25em;
     margin-bottom: 40px;
+    margin-top: -10px;
     max-width: 760px; }
   .home .main-standout {
     background: #FEFEF1;
