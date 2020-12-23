@@ -102,6 +102,8 @@ $yellow: map-get($colors, yellow);
 
       &-image {
         object-fit: cover;
+        height: 222px;
+        width: 344px;
       }// end aside item image
 
       &-content {

@@ -243,7 +243,9 @@ body {
     margin-bottom: 30px;
     position: relative; }
     .home .aside-item-image {
-      object-fit: cover; }
+      object-fit: cover;
+      height: 222px;
+      width: 344px; }
     .home .aside-item-content {
       padding: 20px; }
     .home .aside-item-description {
