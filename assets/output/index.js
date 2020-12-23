@@ -199,7 +199,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./base/reset.css":"css/base/reset.css","./base/mapbox.css":"css/base/mapbox.css","./../../static/footer-border.jpg":[["footer-border.6ce50aca.jpg","../static/footer-border.jpg"],"../static/footer-border.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/nojs.js":[function(require,module,exports) {
+},{"./base/reset.css":"css/base/reset.css","./base/mapbox.css":"css/base/mapbox.css","_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"js/nojs.js":[function(require,module,exports) {
 document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/, 'js');
 },{}],"../node_modules/mapbox-gl/dist/mapbox-gl.js":[function(require,module,exports) {
 var define;

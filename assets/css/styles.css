@@ -154,7 +154,6 @@ body {
   overflow: hidden;
   padding-bottom: 40px; }
   .footer-border {
-    background-image: url("../../static/footer-border.jpg");
     height: 65px;
     margin-bottom: 40px; }
   .footer-link {
