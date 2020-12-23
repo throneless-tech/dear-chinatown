@@ -81,6 +81,10 @@ $yellow: map-get($colors, yellow);
 
         &-content {
           margin-right: 30px;
+
+          & p {
+            color: $green;
+          }
         }// end standout item content
       }// end standout item
     }// end standout
