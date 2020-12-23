@@ -294,37 +294,21 @@ body {
     .prefooter .sponsors-item {
       margin-bottom: 20px;
       position: relative; }
-      .prefooter .sponsors-item-image {
-        max-width: 175px; }
-      .prefooter .sponsors-item-link {
-        margin-top: 10px; }
-        .prefooter .sponsors-item-link-text {
-          color: #EFC01C;
-          position: relative; }
-          .prefooter .sponsors-item-link-text :last-child {
-            position: absolute;
-            right: -30px;
-            top: 6px;
-            transition: 500ms; }
-        .prefooter .sponsors-item-link-hidden {
-          bottom: 0;
-          height: 100%;
-          left: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 100%; }
-          .prefooter .sponsors-item-link-hidden:active + .sponsors-item-link-text :last-child, .prefooter .sponsors-item-link-hidden:focus + .sponsors-item-link-text :last-child, .prefooter .sponsors-item-link-hidden:hover + .sponsors-item-link-text :last-child {
-            right: -40px;
-            transition: 500ms; }
+      .prefooter .sponsors-item-link-image {
+        max-width: 175px;
+        transform: scale(1);
+        transition: 500ms; }
+      .prefooter .sponsors-item-link:active .sponsors-item-link-image, .prefooter .sponsors-item-link:focus .sponsors-item-link-image, .prefooter .sponsors-item-link:hover .sponsors-item-link-image {
+        transform: scale(1.1);
+        transition: 500ms; }
       @media (min-width: 768px) {
         .prefooter .sponsors-item {
           margin-bottom: 0;
-          margin-left: 100px; } }
+          margin-left: 80px; } }
     @media (min-width: 768px) {
       .prefooter .sponsors {
         display: flex;
-        margin-left: -100px; } }
+        margin-left: -80px; } }
   @media (min-width: 768px) {
     .prefooter {
       padding-bottom: 80px;

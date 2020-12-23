@@ -2,7 +2,7 @@
 
 $bp-sm: map-get($breakpoints, sm);
 $gutter: 126px;
-$gutter-sponsors: 100px;
+$gutter-sponsors: 80px;
 
 $green: map-get($colors, green);
 $light-green: map-get($colors, greenLight);
@@ -168,43 +168,21 @@ $yellow: map-get($colors, yellow);
       margin-bottom: 20px;
       position: relative;
 
-      &-image {
-        max-width: 175px;
-      }
-
       &-link {
-        margin-top: 10px;
 
-        &-text {
-          color: $yellow;
-          position: relative;
+        &-image {
+          max-width: 175px;
+          transform: scale(1);
+          transition: 500ms;
+        }
 
-          :last-child {
-            position: absolute;
-            right: -30px;
-            top: 6px;
+        &:active, &:focus, &:hover {
+          & .sponsors-item-link-image {
+            transform: scale(1.1);
             transition: 500ms;
           }
         }
 
-        &-hidden {
-          bottom: 0;
-          height: 100%;
-          left: 0;
-          position: absolute;
-          right: 0;
-          top: 0;
-          width: 100%;
-
-          &:active, &:focus, &:hover {
-            + .sponsors-item-link-text {
-              :last-child {
-                right: -40px;
-                transition: 500ms;
-              }
-            }
-          }
-        }// end hidden
       }// end sponsors item link
 
       @media (min-width: $bp-sm) {
