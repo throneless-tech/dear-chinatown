@@ -244,20 +244,20 @@ body {
 .home {
   position: relative; }
   .home-background {
+    background-color: #017653;
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: contain;
     left: 0;
     overflow: hidden;
     position: absolute;
     top: 55%;
     width: 100%;
     z-index: -1; }
-    .home-background-image {
-      min-height: 700px;
-      object-fit: cover;
-      width: 100%; }
     @media (min-width: 768px) {
       .home-background {
-        background-color: #017653;
-        min-height: 1500px; } }
+        min-height: 1500px;
+        top: 50%; } }
   @media (min-width: 768px) {
     .home-item {
       margin-left: 126px; } }
