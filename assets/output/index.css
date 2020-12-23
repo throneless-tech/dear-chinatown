@@ -331,6 +331,8 @@ body {
     .prefooter .sponsors-item {
       margin-bottom: 20px;
       position: relative; }
+      .prefooter .sponsors-item-image {
+        max-width: 175px; }
       .prefooter .sponsors-item-link {
         margin-top: 10px; }
         .prefooter .sponsors-item-link-text {

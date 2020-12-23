@@ -167,6 +167,10 @@ $yellow: map-get($colors, yellow);
       margin-bottom: 20px;
       position: relative;
 
+      &-image {
+        max-width: 175px;
+      }
+
       &-link {
         margin-top: 10px;
 
