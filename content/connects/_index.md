@@ -16,5 +16,6 @@ We encourage you to check out other mapping projects that we continue to learn f
 - [Anti-Eviction Mapping Project](https://antievictionmap.com/)
 
 Washington, DC Maps:
+
 - [Mapping Segregation in Washington DC](https://www.mappingsegregationdc.org/) by Prologue DC
-- [D.C. Music Map](https://folklife.si.edu/dc-music-map) by Smithsonian Center for Folklike & Cultural Heritage
+- [D.C. Music Map](https://folklife.si.edu/dc-music-map) by Smithsonian Center for Folklife & Cultural Heritage
