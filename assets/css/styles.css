@@ -312,7 +312,7 @@ body {
   @media (min-width: 768px) {
     .prefooter {
       padding-bottom: 80px;
-      padding-top: 100px; } }
+      padding-top: 30px; } }
 
 /* Section styles */
 .section-content {
