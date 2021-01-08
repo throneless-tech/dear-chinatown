@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,oBAAoB;AAGlB,gBAAU;EACR,aAAa,EAAE,IAAI;EAEnB,mBAAG;IACD,aAAa,EAAE,GAAG",
+"mappings": "AAAA,oBAAoB;AAIlB,eAAS;EACP,aAAa,EAAE,KAAK;EACpB,UAAU,EAAE,IAAI;EAEhB,qBAAQ;IACN,OAAO,EAAE,KAAK;IACd,MAAM,EAAE,IAAI;IACZ,KAAK,EAAE,IAAI;AAIf,gBAAU;EACR,aAAa,EAAE,IAAI;EAEnB,mBAAG;IACD,aAAa,EAAE,GAAG",
 "sources": ["scss/section.scss"],
 "names": [],
 "file": "section.css"

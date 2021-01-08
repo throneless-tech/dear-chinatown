@@ -365,6 +365,13 @@ body {
       padding-top: 30px; } }
 
 /* Section styles */
+.section-border {
+  margin-bottom: 120px;
+  margin-top: 50px; }
+  .section-border-image {
+    display: block;
+    height: 43px;
+    width: 100%; }
 .section-content {
   margin-bottom: 60px; }
   .section-content ul {

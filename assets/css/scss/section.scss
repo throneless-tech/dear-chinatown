@@ -1,6 +1,18 @@
 /* Section styles */
 
 .section {
+
+  &-border {
+    margin-bottom: 120px;
+    margin-top: 50px;
+    
+    &-image {
+      display: block;
+      height: 43px;
+      width: 100%;
+    }
+  }
+
   &-content {
     margin-bottom: 60px;
 
