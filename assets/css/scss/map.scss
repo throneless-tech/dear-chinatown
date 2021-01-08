@@ -7,11 +7,11 @@ $gray: map-get($colors, gray);
 $green: map-get($colors, green);
 $off-white: map-get($colors, offWhite);
 
-$business-color: #D9891C;
-$community-color: #D42A2A;
-$family-color: rgba(212,42,42,0.3);
-$landmark-color: #878484;
-$media-color: #EFC01C;
+$arts-color: #D9891C;
+$business-color: #D42A2A;
+$community-color: rgba(212,42,42,0.3);
+$family-color: #878484;
+$landmark-color: #EFC01C;
 $park-color: #064E3C;
 $recreation-color: #BAD9C6;
 
@@ -165,32 +165,32 @@ $map-margin: 40px;
 
         &#ArtsContent {
           :before {
-            background-color: $business-color;
+            background-color: $arts-color;
             content: "";
           }
         }
 
         &#BusinessContent {
           :before {
-            background-color: $community-color;
+            background-color: $business-color;
           }
         }
 
         &#CommunityContent {
           :before {
-            background-color: $family-color;
+            background-color: $community-color;
           }
         }
 
         &#FamilyContent {
           :before {
-            background-color: $landmark-color;
+            background-color: $family-color;
           }
         }
 
         &#LandmarkContent {
           :before {
-            background-color: $media-color;
+            background-color: $landmark-color;
           }
         }
 

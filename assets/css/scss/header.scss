@@ -36,7 +36,9 @@ $gutter-sm: 20px;
       } // end menu link
 
       &:not(:first-child) {
-        margin-top: 10px;
+        @media (max-width: $bp-sm) {
+          margin-top: 10px;
+        }
       }
 
       @media (min-width: $bp-sm) {

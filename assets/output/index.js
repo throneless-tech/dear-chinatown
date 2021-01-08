@@ -33367,15 +33367,60 @@ if (!!map) {
   });
   map.on('load', () => {
     map.resize();
-    map.addSource('places', {
-      'type': 'geojson',
-      'data': collection
+    map.loadImage('../circle.svg', function (error, image) {
+      if (error) throw error;
+      map.addImage('circle-icon', image, {
+        'sdf': true
+      });
+      map.addSource('places', {
+        'type': 'geojson',
+        'data': collection
+      });
+      map.addLayer({
+        'id': '3d-buildings',
+        'source': 'composite',
+        'source-layer': 'building',
+        'type': 'fill',
+        'minzoom': 1,
+        'paint': {
+          'fill-color': '#E0DFC8'
+        }
+      }, 'places');
+      map.addSource('currentBuildings', {
+        type: 'geojson',
+        data: {
+          "type": "FeatureCollection",
+          "features": []
+        }
+      });
+      map.addLayer({
+        "id": "highlight",
+        "source": "currentBuildings",
+        'type': 'line',
+        'minzoom': 1,
+        'paint': {
+          'line-color': '#f00',
+          'line-width': 3
+        }
+      }, "places");
+      map.addLayer({
+        'id': 'places',
+        'type': 'symbol',
+        'source': 'places',
+        'layout': {
+          'icon-image': 'circle-icon',
+          'icon-size': 1
+        },
+        'paint': {
+          'icon-color': ['match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+          ['get', 'Category'], // Use the result 'STORE_TYPE' property
+          'Arts', '#D9891C', 'Business', '#D42A2A', 'Community', 'rgba(212,42,42,0.3)', 'Family', '#878484', 'Landmark', '#EFC01C', 'Park', '#064E3C', 'Recreation', '#BAD9C6', '#000' // any other store type
+          ]
+        }
+      });
+      ;
     });
-    map.addLayer({
-      'id': 'places',
-      'type': 'circle',
-      'source': 'places'
-    }); // var layers = map.getStyle().layers;
+    console.log(collection); // var layers = map.getStyle().layers;
     // var labelLayerId;
     // for (var i = 0; i < layers.length; i++) {
     //   if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
@@ -33383,34 +33428,7 @@ if (!!map) {
     //     break;
     //   }
     // }
-
-    map.addLayer({
-      'id': '3d-buildings',
-      'source': 'composite',
-      'source-layer': 'building',
-      'type': 'fill',
-      'minzoom': 1,
-      'paint': {
-        'fill-color': '#E0DFC8'
-      }
-    }, 'places');
-    map.addSource('currentBuildings', {
-      type: 'geojson',
-      data: {
-        "type": "FeatureCollection",
-        "features": []
-      }
-    });
-    map.addLayer({
-      "id": "highlight",
-      "source": "currentBuildings",
-      'type': 'line',
-      'minzoom': 1,
-      'paint': {
-        'line-color': '#f00',
-        'line-width': 3
-      }
-    }, "places"); // map.on('click', '3d-buildings', function(e) {
+    // map.on('click', '3d-buildings', function(e) {
     //   map.getSource('currentBuildings').setData({
     //     "type": "FeatureCollection",
     //     "features": e.features
@@ -33492,7 +33510,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "58349" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60348" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -207,8 +207,9 @@ body {
       @media (min-width: 768px) {
         .header-menu-item-link {
           color: #064E3C; } }
-    .header-menu-item:not(:first-child) {
-      margin-top: 10px; }
+    @media (max-width: 768px) {
+      .header-menu-item:not(:first-child) {
+        margin-top: 10px; } }
     @media (min-width: 768px) {
       .header-menu-item {
         margin-left: 60px; } }
