@@ -33346,6 +33346,7 @@ if (!!map) {
       fetch("http://mapquestapi.com/geocoding/v1/address?key=".concat("0dQwghW7v7YtRwdH5NaSaomolrlByRMo", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
         coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
         properties = point.fields;
+        properties['id'] = i;
         let feature = {
           "type": "Feature",
           "geometry": {
@@ -33367,7 +33368,7 @@ if (!!map) {
   });
   map.on('load', () => {
     map.resize();
-    map.loadImage('../circle.svg', function (error, image) {
+    map.loadImage('../circle.png', function (error, image) {
       if (error) throw error;
       map.addImage('circle-icon', image, {
         'sdf': true
@@ -33377,50 +33378,26 @@ if (!!map) {
         'data': collection
       });
       map.addLayer({
-        'id': '3d-buildings',
-        'source': 'composite',
-        'source-layer': 'building',
-        'type': 'fill',
-        'minzoom': 1,
-        'paint': {
-          'fill-color': '#E0DFC8'
-        }
-      }, 'places');
-      map.addSource('currentBuildings', {
-        type: 'geojson',
-        data: {
-          "type": "FeatureCollection",
-          "features": []
-        }
-      });
-      map.addLayer({
-        "id": "highlight",
-        "source": "currentBuildings",
-        'type': 'line',
-        'minzoom': 1,
-        'paint': {
-          'line-color': '#f00',
-          'line-width': 3
-        }
-      }, "places");
-      map.addLayer({
         'id': 'places',
         'type': 'symbol',
         'source': 'places',
         'layout': {
           'icon-image': 'circle-icon',
-          'icon-size': 1
+          'icon-size': 1,
+          // 'text-font': ['Source Serif Pro'], // #FIXME needs to be edited in Mapbox Studio
+          // https://docs.mapbox.com/help/troubleshooting/manage-fontstacks/
+          'text-field': ['get', 'id']
         },
         'paint': {
           'icon-color': ['match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
           ['get', 'Category'], // Use the result 'STORE_TYPE' property
           'Arts', '#D9891C', 'Business', '#D42A2A', 'Community', 'rgba(212,42,42,0.3)', 'Family', '#878484', 'Landmark', '#EFC01C', 'Park', '#064E3C', 'Recreation', '#BAD9C6', '#000' // any other store type
-          ]
+          ],
+          'text-color': '#fff'
         }
       });
       ;
-    });
-    console.log(collection); // var layers = map.getStyle().layers;
+    }); // var layers = map.getStyle().layers;
     // var labelLayerId;
     // for (var i = 0; i < layers.length; i++) {
     //   if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
@@ -33510,7 +33487,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60348" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61544" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

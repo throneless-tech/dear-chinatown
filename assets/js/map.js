@@ -48,6 +48,7 @@ if (!!map) {
             .then(data => {
               coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
               properties = point.fields;
+              properties['id'] = i;
               let feature = {
                 "type": "Feature",
                 "geometry": {
@@ -72,7 +73,7 @@ if (!!map) {
   map.on('load', () => {
     map.resize();
 
-    map.loadImage('../circle.svg', function(error, image) {
+    map.loadImage('../circle.png', function(error, image) {
       if (error) throw error;
       map.addImage('circle-icon', image, { 'sdf': true });
 
@@ -82,42 +83,15 @@ if (!!map) {
       })
 
       map.addLayer({
-        'id': '3d-buildings',
-        'source': 'composite',
-        'source-layer': 'building',
-        'type': 'fill',
-        'minzoom': 1,
-        'paint': {
-          'fill-color': '#E0DFC8',
-        },
-      }, 'places');
-
-      map.addSource('currentBuildings', {
-        type: 'geojson',
-        data: {
-          "type": "FeatureCollection",
-          "features": [],
-        }
-      });
-
-      map.addLayer({
-        "id": "highlight",
-        "source": "currentBuildings",
-        'type': 'line',
-        'minzoom': 1,
-        'paint': {
-          'line-color': '#f00',
-          'line-width': 3
-        }
-      }, "places");
-
-      map.addLayer({
         'id': 'places',
         'type': 'symbol',
         'source': 'places',
         'layout': {
           'icon-image': 'circle-icon',
-          'icon-size': 1
+          'icon-size': 1,
+          // 'text-font': ['Source Serif Pro'], // #FIXME needs to be edited in Mapbox Studio
+          // https://docs.mapbox.com/help/troubleshooting/manage-fontstacks/
+          'text-field': ['get', 'id'],
         },
         'paint': {
           'icon-color': [
@@ -131,13 +105,11 @@ if (!!map) {
             'Park', '#064E3C',
             'Recreation', '#BAD9C6',
             '#000' // any other store type
-          ]
+          ],
+          'text-color': '#fff',
         }
       });;
     });
-
-
-    console.log(collection);
 
     // var layers = map.getStyle().layers;
     // var labelLayerId;
