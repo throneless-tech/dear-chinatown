@@ -19,6 +19,13 @@ $yellow: map-get($colors, yellow);
     }
   }
 
+  &-icon {
+    display: block;
+    margin-bottom: 58px;
+    height: 120px;
+    width: 120px;
+  }
+
   &-link {
     color: $yellow;
     font-family: 'Source Serif Pro', serif;
