@@ -105,6 +105,7 @@ body {
 .expand-button {
   background: unset;
   border: none;
+  cursor: pointer;
   position: relative; }
   .expand-button:focus {
     outline: none; }
@@ -416,16 +417,16 @@ body {
         left: 0;
         position: absolute;
         width: 10px; }
-      .legend-assets-item-content#BusinessContent :before {
+      .legend-assets-item-content#ArtsContent :before {
         background-color: #D9891C;
         content: ""; }
-      .legend-assets-item-content#CommunityContent :before {
+      .legend-assets-item-content#BusinessContent :before {
         background-color: #D42A2A; }
-      .legend-assets-item-content#FamilyContent :before {
+      .legend-assets-item-content#CommunityContent :before {
         background-color: rgba(212, 42, 42, 0.3); }
-      .legend-assets-item-content#LandmarkContent :before {
+      .legend-assets-item-content#FamilyContent :before {
         background-color: #878484; }
-      .legend-assets-item-content#MediaContent :before {
+      .legend-assets-item-content#LandmarkContent :before {
         background-color: #EFC01C; }
       .legend-assets-item-content#ParkContent :before {
         background-color: #064E3C; }

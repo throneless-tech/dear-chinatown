@@ -163,32 +163,32 @@ $map-margin: 40px;
           width: 10px;
         }
 
-        &#BusinessContent {
+        &#ArtsContent {
           :before {
             background-color: $business-color;
             content: "";
           }
         }
 
-        &#CommunityContent {
+        &#BusinessContent {
           :before {
             background-color: $community-color;
           }
         }
 
-        &#FamilyContent {
+        &#CommunityContent {
           :before {
             background-color: $family-color;
           }
         }
 
-        &#LandmarkContent {
+        &#FamilyContent {
           :before {
             background-color: $landmark-color;
           }
         }
 
-        &#MediaContent {
+        &#LandmarkContent {
           :before {
             background-color: $media-color;
           }

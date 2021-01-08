@@ -35,6 +35,7 @@ $green: map-get($colors, green);
 .expand-button {
   background: unset;
   border: none;
+  cursor: pointer;
   position: relative;
 
   &:focus {

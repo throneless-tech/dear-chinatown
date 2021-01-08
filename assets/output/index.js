@@ -33341,21 +33341,21 @@ if (!!map) {
         existing.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
       } else {
         past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
-      }
+      } // fetch(`https://open.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.fields.Address}`)
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
+      //     properties = point.fields;
+      //     let feature = {
+      //       "type": "Feature",
+      //       "geometry": {
+      //         "type": "Point", "coordinates": coordinates
+      //       },
+      //       "properties": properties
+      //     };
+      //     collection.features.push(feature);
+      //   });
 
-      fetch("https://open.mapquestapi.com/geocoding/v1/address?key=".concat("0dQwghW7v7YtRwdH5NaSaomolrlByRMo", "&location=").concat(point.fields.Address)).then(response => response.json()).then(data => {
-        coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
-        properties = point.fields;
-        let feature = {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": coordinates
-          },
-          "properties": properties
-        };
-        collection.features.push(feature);
-      });
     });
   });
   _mapboxGl.default.accessToken = "pk.eyJ1IjoibWxld2luc21pdGgiLCJhIjoiY2tleDMwMGQwMDF5azJ3cDM5aWd5aGZzcCJ9.NRVX39VAQ9o5ZoM-cGWXPg";
@@ -33489,7 +33489,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64868" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56658" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
