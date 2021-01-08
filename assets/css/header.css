@@ -9,7 +9,7 @@ Error: Undefined variable: "$breakpoints".
 5: $gutter: 60px;
 6: 
 7: .header {
-8:   padding-bottom: 36px;
+8:   padding-bottom: 56px;
 
 Backtrace:
 assets/css/scss/header.scss:3
@@ -63,4 +63,4 @@ assets/css/scss/header.scss:3
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 3 of assets/css/scss/header.scss\A \A 1: /*  Header styles */\A 2: \A 3: $bp-sm: map-get($breakpoints, sm);\A 4: $green: map-get($colors, green);\A 5: $gutter: 60px;\A 6: \A 7: .header {\A 8:   padding-bottom: 36px;"; }
+  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 3 of assets/css/scss/header.scss\A \A 1: /*  Header styles */\A 2: \A 3: $bp-sm: map-get($breakpoints, sm);\A 4: $green: map-get($colors, green);\A 5: $gutter: 60px;\A 6: \A 7: .header {\A 8:   padding-bottom: 56px;"; }

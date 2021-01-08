@@ -26,7 +26,7 @@ $yellow: map-get($colors, yellow);
 
     @media (min-width: $bp-sm) {
       min-height: 1800px;
-      top: 50%;
+      top: 50vh;
     }
   }// end background
 
@@ -38,12 +38,14 @@ $yellow: map-get($colors, yellow);
 
   .main {
     &-explainer {
+      background-color: $off-white;
       font-size: 1.5em;
       font-weight: 300;
       line-height: 1.25em;
       margin-bottom: 40px;
       margin-top: -5px;
-      max-width: 760px;
+      max-width: 800px;
+      padding: 20px;
 
     }// end main explainer
 
