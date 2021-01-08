@@ -1,14 +1,14 @@
 /*
-Error: Undefined variable: "$colors".
+Error: Undefined variable: "$breakpoints".
         on line 2 of assets/css/scss/fonts.scss
 
 1: 
-2: $green: map-get($colors, green);
-3: $off-white: map-get($colors, offWhite);
-4: $red: map-get($colors, red);
-5: $yellow: map-get($colors, yellow);
-6: 
-7: body {
+2: $bp-sm: map-get($breakpoints, sm);
+3: $green: map-get($colors, green);
+4: $off-white: map-get($colors, offWhite);
+5: $red: map-get($colors, red);
+6: $yellow: map-get($colors, yellow);
+7: 
 
 Backtrace:
 assets/css/scss/fonts.scss:2
@@ -48,19 +48,18 @@ assets/css/scss/fonts.scss:2
 /Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:215:in `block in update_stylesheets'
 /Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `each'
 /Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:209:in `update_stylesheets'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:294:in `watch'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin.rb:109:in `method_missing'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:358:in `watch_or_update'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:51:in `process_result'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
-/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/bin/sass:13:in `<top (required)>'
-/Users/rae/.rvm/gems/ruby-2.6.5/bin/sass:23:in `load'
-/Users/rae/.rvm/gems/ruby-2.6.5/bin/sass:23:in `<main>'
-/Users/rae/.rvm/gems/ruby-2.6.5/bin/ruby_executable_hooks:24:in `eval'
-/Users/rae/.rvm/gems/ruby-2.6.5/bin/ruby_executable_hooks:24:in `<main>'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:443:in `on_file_changed'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-3.7.4/lib/sass/plugin/compiler.rb:320:in `block in watch'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/config.rb:23:in `call'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:115:in `_process_changes'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:19:in `block in loop_for'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/processor.rb:15:in `loop_for'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:84:in `_wait_for_changes'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/event/loop.rb:42:in `block in setup'
+/Users/rae/.rvm/gems/ruby-2.6.5/gems/sass-listen-4.0.0/lib/sass-listen/internals/thread_pool.rb:6:in `block in add'
 */
 body:before {
   white-space: pre;
   font-family: monospace;
-  content: "Error: Undefined variable: \"$colors\".\A         on line 2 of assets/css/scss/fonts.scss\A \A 1: \A 2: $green: map-get($colors, green);\A 3: $off-white: map-get($colors, offWhite);\A 4: $red: map-get($colors, red);\A 5: $yellow: map-get($colors, yellow);\A 6: \A 7: body {"; }
+  content: "Error: Undefined variable: \"$breakpoints\".\A         on line 2 of assets/css/scss/fonts.scss\A \A 1: \A 2: $bp-sm: map-get($breakpoints, sm);\A 3: $green: map-get($colors, green);\A 4: $off-white: map-get($colors, offWhite);\A 5: $red: map-get($colors, red);\A 6: $yellow: map-get($colors, yellow);\A 7: "; }

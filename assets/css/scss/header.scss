@@ -2,25 +2,42 @@
 
 $bp-sm: map-get($breakpoints, sm);
 $green: map-get($colors, green);
+$dark-gray: map-get($colors, grayDark);
 $gutter: 60px;
+$gutter-sm: 20px;
 
 .header {
   padding-bottom: 56px;
   padding-top: 36px;
 
   &-logo {
-    height: 150px;
-    width: 150px;
+    display: block;
+    height: 70px;
+    width: 70px;
+
+    @media (min-width: $bp-sm) {
+      height: 150px;
+      width: 150px;
+    }
   } // end logo
 
   &-menu {
 
     &-item {
+      letter-spacing: 0.02em;
 
       &-link {
-        color: $green;
+        color: $dark-gray;
         font-weight: 700;
+
+        @media (min-width: $bp-sm) {
+          color: $green;
+        }
       } // end menu link
+
+      &:not(:first-child) {
+        margin-top: 10px;
+      }
 
       @media (min-width: $bp-sm) {
         margin-left: $gutter;
@@ -34,15 +51,19 @@ $gutter: 60px;
   } // end menu
 
   &-nav {
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
 
     &-item {
-      margin-left: $gutter;
+      margin-left: $gutter-sm;
+
+      @media (min-width: $bp-sm) {
+        margin-left: $gutter;
+      }
     }// end item
 
     @media (min-width: $bp-sm) {
-      align-items: center;
-      display: flex;
-      flex-wrap: nowrap;
       justify-content: space-between;
       margin-left: -$gutter;
     }

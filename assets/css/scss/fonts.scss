@@ -1,4 +1,5 @@
 
+$bp-sm: map-get($breakpoints, sm);
 $green: map-get($colors, green);
 $off-white: map-get($colors, offWhite);
 $red: map-get($colors, red);
@@ -21,9 +22,13 @@ body {
   h2 {
     color: $green;
     font-family: 'Red Rose', cursive;
-    font-size: 2em;
+    font-size: 1.5em;
     font-weight: 300;
     line-height: 1.5em;
+
+    @media (min-width: $bp-sm) {
+      font-size: 2em;
+    }
   }
 
   h3 {
