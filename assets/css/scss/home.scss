@@ -16,7 +16,7 @@ $yellow: map-get($colors, yellow);
     background-color: $light-green;
     background-position: top;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     left: 0;
     overflow: hidden;
     position: absolute;
@@ -25,7 +25,7 @@ $yellow: map-get($colors, yellow);
     z-index: -1;
 
     @media (min-width: $bp-sm) {
-      min-height: 1500px;
+      min-height: 1800px;
       top: 50%;
     }
   }// end background

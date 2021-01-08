@@ -199,7 +199,7 @@ body {
     background-color: #017653;
     background-position: top;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     left: 0;
     overflow: hidden;
     position: absolute;
@@ -208,7 +208,7 @@ body {
     z-index: -1; }
     @media (min-width: 768px) {
       .home-background {
-        min-height: 1500px;
+        min-height: 1800px;
         top: 50%; } }
   @media (min-width: 768px) {
     .home-item {
