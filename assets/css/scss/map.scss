@@ -66,6 +66,43 @@ $map-margin: 40px;
   }// end content
 }// end mapbox gl popup
 
+body {
+  counter-reset: asset;
+}
+
+.marker {
+
+  &:before {
+    color: #fff;
+    counter-increment: asset; /* Increment the value of section counter by 1 */
+    content: counter(asset);
+    cursor: pointer;
+    font-family: 'Source Serif Pro', serif;
+    position: absolute;
+  }
+
+  &--existing {
+    &:before {
+      background-color: $green;
+      border-radius: 50%;
+      height: 22px;
+      padding: 3px;
+      text-align: center;
+      width: 22px;
+    }
+  }
+
+  &--past {
+    &:before {
+      border-left: 14px solid transparent;
+      border-right: 14px solid transparent;
+      border-bottom: 24px solid $green;
+      height: 0;
+      width: 0;
+    }
+  }
+}// end marker
+
 .map {
   border-bottom: 0.75px solid $gray;
   border-top: 0.75px solid $gray;

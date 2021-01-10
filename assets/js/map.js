@@ -48,7 +48,6 @@ if (!!map) {
             .then(data => {
               coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
               properties = point.fields;
-              properties['id'] = i;
               let feature = {
                 "type": "Feature",
                 "geometry": {
@@ -73,43 +72,49 @@ if (!!map) {
   map.on('load', () => {
     map.resize();
 
-    map.loadImage('../circle.png', function(error, image) {
-      if (error) throw error;
-      map.addImage('circle-icon', image, { 'sdf': true });
+    map.addSource('places', {
+      'type': 'geojson',
+      'data': collection,
+    })
 
-      map.addSource('places', {
-        'type': 'geojson',
-        'data': collection,
-      })
+    console.log(collection);
 
-      map.addLayer({
-        'id': 'places',
-        'type': 'symbol',
-        'source': 'places',
-        'layout': {
-          'icon-image': 'circle-icon',
-          'icon-size': 1,
-          // 'text-font': ['Source Serif Pro'], // #FIXME needs to be edited in Mapbox Studio
-          // https://docs.mapbox.com/help/troubleshooting/manage-fontstacks/
-          'text-field': ['get', 'id'],
-        },
-        'paint': {
-          'icon-color': [
-            'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-            ['get', 'Category'], // Use the result 'STORE_TYPE' property
-            'Arts', '#D9891C',
-            'Business', '#D42A2A',
-            'Community', 'rgba(212,42,42,0.3)',
-            'Family', '#878484',
-            'Landmark', '#EFC01C',
-            'Park', '#064E3C',
-            'Recreation', '#BAD9C6',
-            '#000' // any other store type
-          ],
-          'text-color': '#fff',
-        }
-      });;
+    // add markers to map
+    collection.features.forEach(marker => {
+
+      // create a HTML element for each feature
+      const el = document.createElement('div');
+      el.className = 'marker';
+
+      if (marker.properties["Existing?"]) {
+        el.classList.add('marker--existing');
+      } else {
+        el.classList.add('marker--past');
+      }
+
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .addTo(map);
+
+      const coordinates = marker.geometry.coordinates.slice();
+      const name = marker.properties.Name;
+      const address = marker.properties.Address;
+      const description = marker.properties.Quote;
+      const type = marker.properties.Category;
+
+      new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: [15, -15] }) // add popups
+          .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`))
+        .addTo(map);
     });
+
+    // map.addLayer({
+    //   'id': 'places',
+    //   'type': 'circle',
+    //   'source': 'places',
+    // });
 
     // var layers = map.getStyle().layers;
     // var labelLayerId;
@@ -119,8 +124,36 @@ if (!!map) {
     //     break;
     //   }
     // }
-
-
+    //
+    // map.addLayer({
+    //   'id': '3d-buildings',
+    //   'source': 'composite',
+    //   'source-layer': 'building',
+    //   'type': 'fill',
+    //   'minzoom': 1,
+    //   'paint': {
+    //     'fill-color': '#E0DFC8',
+    //   },
+    // }, 'places');
+    //
+    // map.addSource('currentBuildings', {
+    //   type: 'geojson',
+    //   data: {
+    //     "type": "FeatureCollection",
+    //     "features": [],
+    //   }
+    // });
+    //
+    // map.addLayer({
+    //   "id": "highlight",
+    //   "source": "currentBuildings",
+    //   'type': 'line',
+    //   'minzoom': 1,
+    //   'paint': {
+    //   	'line-color': '#f00',
+    //     'line-width': 3
+    //   }
+    // }, "places");
 
     // map.on('click', '3d-buildings', function(e) {
     //   map.getSource('currentBuildings').setData({
@@ -129,25 +162,25 @@ if (!!map) {
     //   });
     // });
 
-    map.on('click', 'places', (e) => {
-      const coordinates = e.features[0].geometry.coordinates.slice();
-      const name = e.features[0].properties.Name;
-      const address = e.features[0].properties.Address;
-      const description = e.features[0].properties.Quote;
-      const type = e.features[0].properties.Category;
-
-      // Ensure that if the map is zoomed out such that multiple
-      // copies of the feature are visible, the popup appears
-      // over the copy being pointed to.
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-
-      new mapboxgl.Popup()
-        .setLngLat(coordinates)
-        .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
-        .addTo(map);
-    });
+    // map.on('click', 'places', (e) => {
+    //   const coordinates = e.features[0].geometry.coordinates.slice();
+    //   const name = e.features[0].properties.Name;
+    //   const address = e.features[0].properties.Address;
+    //   const description = e.features[0].properties.Quote;
+    //   const type = e.features[0].properties.Category;
+    //
+    //   // Ensure that if the map is zoomed out such that multiple
+    //   // copies of the feature are visible, the popup appears
+    //   // over the copy being pointed to.
+    //   while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    //     coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    //   }
+    //
+    //   new mapboxgl.Popup()
+    //     .setLngLat(coordinates)
+    //     .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
+    //     .addTo(map);
+    // });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
     map.on('mouseenter', 'places', () => {

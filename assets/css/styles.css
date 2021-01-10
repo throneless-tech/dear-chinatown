@@ -395,6 +395,31 @@ body {
       transform: translateX(-50%);
       width: 0; }
 
+body {
+  counter-reset: asset; }
+
+.marker:before {
+  color: #fff;
+  counter-increment: asset;
+  /* Increment the value of section counter by 1 */
+  content: counter(asset);
+  cursor: pointer;
+  font-family: 'Source Serif Pro', serif;
+  position: absolute; }
+.marker--existing:before {
+  background-color: #064E3C;
+  border-radius: 50%;
+  height: 22px;
+  padding: 3px;
+  text-align: center;
+  width: 22px; }
+.marker--past:before {
+  border-left: 14px solid transparent;
+  border-right: 14px solid transparent;
+  border-bottom: 24px solid #064E3C;
+  height: 0;
+  width: 0; }
+
 .map {
   border-bottom: 0.75px solid #CAC9B3;
   border-top: 0.75px solid #CAC9B3; }
