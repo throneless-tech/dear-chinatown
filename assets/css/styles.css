@@ -398,27 +398,37 @@ body {
 body {
   counter-reset: asset; }
 
-.marker:before {
-  color: #fff;
-  counter-increment: asset;
-  /* Increment the value of section counter by 1 */
-  content: counter(asset);
-  cursor: pointer;
-  font-family: 'Source Serif Pro', serif;
-  position: absolute; }
-.marker--existing:before {
-  background-color: #064E3C;
-  border-radius: 50%;
-  height: 22px;
-  padding: 3px;
-  text-align: center;
-  width: 22px; }
-.marker--past:before {
-  border-left: 14px solid transparent;
-  border-right: 14px solid transparent;
-  border-bottom: 24px solid #064E3C;
-  height: 0;
-  width: 0; }
+.marker {
+  cursor: pointer; }
+  .marker:after {
+    color: #fff;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 0.75rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%); }
+  .marker:before {
+    content: '';
+    left: 50%;
+    position: absolute;
+    top: 50%; }
+  .marker--existing:before {
+    background-color: #064E3C;
+    border-radius: 50%;
+    content: '';
+    height: 22px;
+    padding: 3px;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    width: 22px; }
+  .marker--past:before {
+    border-left: 14px solid transparent;
+    border-right: 14px solid transparent;
+    border-bottom: 24px solid #064E3C;
+    height: 0;
+    transform: translate(-50%, -60%);
+    width: 0; }
 
 .map {
   border-bottom: 0.75px solid #CAC9B3;

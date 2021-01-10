@@ -71,23 +71,36 @@ body {
 }
 
 .marker {
+  cursor: pointer;
+
+  &:after {
+    color: #fff;
+    // content: counter(asset);
+    // counter-increment: asset; /* Increment the value of asset counter by 1 */
+    font-family: 'Source Serif Pro', serif;
+    font-size: 0.75rem;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
 
   &:before {
-    color: #fff;
-    counter-increment: asset; /* Increment the value of section counter by 1 */
-    content: counter(asset);
-    cursor: pointer;
-    font-family: 'Source Serif Pro', serif;
+    content: '';
+    left: 50%;
     position: absolute;
+    top: 50%;
   }
 
   &--existing {
     &:before {
       background-color: $green;
       border-radius: 50%;
+      content: '';
       height: 22px;
       padding: 3px;
       text-align: center;
+      transform: translate(-50%, -50%);
       width: 22px;
     }
   }
@@ -98,6 +111,7 @@ body {
       border-right: 14px solid transparent;
       border-bottom: 24px solid $green;
       height: 0;
+      transform: translate(-50%, -60%);
       width: 0;
     }
   }

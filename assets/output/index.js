@@ -33298,6 +33298,13 @@ const legendLists = [...document.getElementsByClassName('legend-assets-item-list
 const existing = document.getElementById('existing');
 const past = document.getElementById('past');
 const toggles = document.querySelectorAll("[data-expands]");
+const images = [{
+  url: '../circle.png',
+  id: 'circle-icon'
+}, {
+  url: '../triangle.png',
+  id: 'triangle-icon'
+}];
 
 if (!!map) {
   const base = new _airtable.default({
@@ -33346,6 +33353,7 @@ if (!!map) {
       fetch("http://mapquestapi.com/geocoding/v1/address?key=".concat("0dQwghW7v7YtRwdH5NaSaomolrlByRMo", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
         coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
         properties = point.fields;
+        properties['id'] = i + 1;
         let feature = {
           "type": "Feature",
           "geometry": {
@@ -33367,35 +33375,66 @@ if (!!map) {
   });
   map.on('load', () => {
     map.resize();
+    images.map(img => new Promise((resolve, reject) => {
+      map.loadImage(img.url, (error, image) => {
+        if (error) throw error;
+        map.addImage(img.id, image);
+      });
+    }));
     map.addSource('places', {
       'type': 'geojson',
       'data': collection
     });
+    map.addLayer({
+      'id': 'places',
+      'type': 'symbol',
+      'source': 'places',
+      'layout': {
+        "icon-image": "circle-icon",
+        'text-field': ['get', 'id']
+      },
+      'paint': {
+        'text-color': '#fff'
+      }
+    });
     console.log(collection); // add markers to map
-
-    collection.features.forEach(marker => {
-      // create a HTML element for each feature
-      const el = document.createElement('div');
-      el.className = 'marker';
-
-      if (marker.properties["Existing?"]) {
-        el.classList.add('marker--existing');
-      } else {
-        el.classList.add('marker--past');
-      } // make a marker for each feature and add to the map
-
-
-      new _mapboxGl.default.Marker(el).setLngLat(marker.geometry.coordinates).addTo(map);
-      const coordinates = marker.geometry.coordinates.slice();
-      const name = marker.properties.Name;
-      const address = marker.properties.Address;
-      const description = marker.properties.Quote;
-      const type = marker.properties.Category;
-      new _mapboxGl.default.Marker(el).setLngLat(marker.geometry.coordinates).setPopup(new _mapboxGl.default.Popup({
-        offset: [15, -15]
-      }) // add popups
-      .setHTML("<div class=\"mapboxgl-popup-content-title f-rose f-green\">".concat(name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(address, " | ").concat(type, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(description ? description : '', "</div>"))).addTo(map);
-    }); // map.addLayer({
+    // collection.features.forEach(marker => {
+    //
+    //   // create a HTML element for each feature
+    //   const el = document.createElement('div');
+    //   el.className = 'marker';
+    //
+    //   if (marker.properties["Existing?"]) {
+    //     el.classList.add('marker--existing');
+    //   } else {
+    //     el.classList.add('marker--past');
+    //   }
+    //
+    //   // make a marker for each feature and add to the map
+    //   new mapboxgl.Marker(el)
+    //     .setLngLat(marker.geometry.coordinates)
+    //     .addTo(map);
+    //
+    //   const coordinates = marker.geometry.coordinates.slice();
+    //   const name = marker.properties.Name;
+    //   const address = marker.properties.Address;
+    //   const description = marker.properties.Quote;
+    //   const type = marker.properties.Category;
+    //
+    //   // Ensure that if the map is zoomed out such that multiple
+    //   // copies of the feature are visible, the popup appears
+    //   // over the copy being pointed to.
+    //   while (Math.abs(marker.geometry.coordinates[0] - coordinates[0]) > 180) {
+    //     coordinates[0] += marker.geometry.coordinates[0] > coordinates[0] ? 360 : -360;
+    //   }
+    //
+    //   new mapboxgl.Marker(el)
+    //     .setLngLat(marker.geometry.coordinates)
+    //     .setPopup(new mapboxgl.Popup({offset: [15, -15]}) // add popups
+    //       .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`))
+    //     .addTo(map);
+    // });
+    // map.addLayer({
     //   'id': 'places',
     //   'type': 'circle',
     //   'source': 'places',
@@ -33524,7 +33563,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49814" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "51079" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
