@@ -81,7 +81,7 @@ if (!!map) {
     images.map(img => new Promise((resolve, reject) => {
       map.loadImage(img.url, (error, image) => {
         if (error) throw error;
-        map.addImage(img.id, image);
+        map.addImage(img.id, image, {'sdf': 'true'});
       })
     }));
 
@@ -105,10 +105,24 @@ if (!!map) {
         'text-field': ['get', 'id'],
         // 'text-font': ['Source Serif Pro'], // #FIXME needs to be edited in Mapbox Studio
           // https://docs.mapbox.com/help/troubleshooting/manage-fontstacks/
-        'text-radial-offset': 1,
+        // 'text-offset': [0, 0.2],
         'text-size': 14,
       },
       'paint': {
+        'icon-color': [
+          'match', // https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+          ['get', 'Category'],
+          'Arts', '#D9891C',
+          'Business', '#D42A2A',
+          'Community', 'rgba(212,42,42,0.3)',
+          'Family', '#878484',
+          'Landmark', '#EFC01C',
+          'Park', '#064E3C',
+          'Recreation', '#BAD9C6',
+          'Residential', '#6794B4',
+          'Religion', '#8A2E8C',
+          '#000' //'#E0DFC8' // any other type
+        ],
         'text-color': '#fff',
       }
     });
@@ -170,56 +184,8 @@ if (!!map) {
 
     map.getSource('currentBuildings').setData({
       "type": "FeatureCollection",
-      "features": collection
+      "features": [],
     });
-
-    console.log(map.getSource('currentBuildings'));
-
-    map.addLayer({
-      "id": "highlight",
-      'source': 'currentBuildings',
-      'filter': ['==', 'extrude', 'true'],
-      'type': 'fill-extrusion',
-      'minzoom': 10,
-      'type': 'fill-extrusion',
-      'paint': {
-        'fill-extrusion-color': [
-            'match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
-            ['get', 'Category'],
-            'Arts', '#D9891C',
-            'Business', '#D42A2A',
-            'Community', 'rgba(212,42,42,0.3)',
-            'Family', '#878484',
-            'Landmark', '#EFC01C',
-            'Park', '#064E3C',
-            'Recreation', '#BAD9C6',
-            'Residential', '#6794B4',
-            'Religion', '#8A2E8C',
-            '#E0DFC8' // any other type
-          ],
-        // use an 'interpolate' expression to add a smooth transition effect to the
-        // buildings as the user zooms in
-        'fill-extrusion-height': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          15,
-          0,
-          15.05,
-          ['get', 'height']
-        ],
-        'fill-extrusion-base': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          15,
-          0,
-          15.05,
-          ['get', 'min_height']
-        ],
-        'fill-extrusion-opacity': 0.6
-      }
-    }, labelLayerId);
 
     map.on('click', 'places', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
