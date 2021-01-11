@@ -48,7 +48,7 @@ if (!!map) {
           } else {
             past.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${name}`;
           }
-          fetch(`https://mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.get("Address")}`)
+          fetch(`https://www.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.get("Address")}`)
             .then(response => response.json())
             .then(data => {
               coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
