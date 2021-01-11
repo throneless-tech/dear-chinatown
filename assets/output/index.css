@@ -556,6 +556,10 @@ body {
         background-color: #064E3C; }
       .legend-assets-item-content#RecreationContent :before {
         background-color: #BAD9C6; }
+      .legend-assets-item-content#ResidentialContent :before {
+        background-color: #6794B4; }
+      .legend-assets-item-content#ReligionContent :before {
+        background-color: #8A2E8C; }
     .legend-assets-item-list-item {
       font-size: 0.8em; }
     .legend-assets-item:not(:last-child) {

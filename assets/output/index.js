@@ -33350,7 +33350,7 @@ if (!!map) {
         past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
       }
 
-      fetch("http://mapquestapi.com/geocoding/v1/address?key=".concat("0dQwghW7v7YtRwdH5NaSaomolrlByRMo", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
+      fetch("http://mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
         coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
         properties = point.fields;
         properties['id'] = i + 1;
@@ -33385,7 +33385,6 @@ if (!!map) {
       'type': 'geojson',
       'data': collection
     });
-    console.log(collection);
     map.addLayer({
       'id': 'places',
       'type': 'symbol',
@@ -33402,7 +33401,64 @@ if (!!map) {
       'paint': {
         'text-color': '#fff'
       }
+    }); // Insert the layer beneath any symbol layer.
+
+    const layers = map.getStyle().layers;
+    let labelLayerId;
+
+    for (var i = 0; i < layers.length; i++) {
+      if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+        labelLayerId = layers[i].id;
+        break;
+      }
+    }
+
+    map.addLayer({
+      'id': '3d-buildings',
+      'source': 'composite',
+      'source-layer': 'building',
+      'filter': ['==', 'extrude', 'true'],
+      'type': 'fill-extrusion',
+      'minzoom': 10,
+      'paint': {
+        'fill-extrusion-color': '#E0DFC8',
+        // use an 'interpolate' expression to add a smooth transition effect to the
+        // buildings as the user zooms in
+        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'height']],
+        'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'min_height']],
+        'fill-extrusion-opacity': 0.6
+      }
+    }, labelLayerId);
+    map.addSource('currentBuildings', {
+      type: 'geojson',
+      data: {
+        "type": "FeatureCollection",
+        "features": []
+      }
     });
+    map.getSource('currentBuildings').setData({
+      "type": "FeatureCollection",
+      "features": collection
+    });
+    console.log(map.getSource('currentBuildings'));
+    map.addLayer({
+      "id": "highlight",
+      'source': 'currentBuildings',
+      'filter': ['==', 'extrude', 'true'],
+      'type': 'fill-extrusion',
+      'minzoom': 10,
+      'type': 'fill-extrusion',
+      'paint': {
+        'fill-extrusion-color': ['match', // Use the 'match' expression: https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+        ['get', 'Category'], 'Arts', '#D9891C', 'Business', '#D42A2A', 'Community', 'rgba(212,42,42,0.3)', 'Family', '#878484', 'Landmark', '#EFC01C', 'Park', '#064E3C', 'Recreation', '#BAD9C6', 'Residential', '#6794B4', 'Religion', '#8A2E8C', '#E0DFC8' // any other type
+        ],
+        // use an 'interpolate' expression to add a smooth transition effect to the
+        // buildings as the user zooms in
+        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'height']],
+        'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'min_height']],
+        'fill-extrusion-opacity': 0.6
+      }
+    }, labelLayerId);
     map.on('click', 'places', e => {
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.Name;
@@ -33480,7 +33536,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53075" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55098" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

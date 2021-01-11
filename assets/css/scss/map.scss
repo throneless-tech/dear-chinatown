@@ -14,6 +14,8 @@ $family-color: #878484;
 $landmark-color: #EFC01C;
 $park-color: #064E3C;
 $recreation-color: #BAD9C6;
+$residential-color: #6794B4;
+$religion-color: #8A2E8C;
 
 $map-margin: 40px;
 
@@ -254,6 +256,18 @@ body {
         &#RecreationContent {
           :before {
             background-color: $recreation-color;
+          }
+        }
+
+        &#ResidentialContent {
+          :before {
+            background-color: $residential-color;
+          }
+        }
+
+        &#ReligionContent {
+          :before {
+            background-color: $religion-color;
           }
         }
       }// end content
