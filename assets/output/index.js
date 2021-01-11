@@ -33350,7 +33350,7 @@ if (!!map) {
         past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
       }
 
-      fetch("http://mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
+      fetch("https://www.mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
         coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
         properties = point.fields;
         properties['id'] = i + 1;
@@ -33532,7 +33532,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57613" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60413" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
