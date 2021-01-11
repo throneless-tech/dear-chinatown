@@ -44,7 +44,6 @@ if (!!map) {
               const el = new ExpandToggle(element);
               if (window.location.hash) {
                 const id = window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2);
-                console.log(id);
                 if (element.dataset.expands === id) {
                   el.expand();
                 }
