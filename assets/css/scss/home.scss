@@ -167,6 +167,13 @@ $yellow: map-get($colors, yellow);
   padding-bottom: 30px;
   padding-top: 30px;
 
+  &-wrap {
+    @media (min-width: $bp-sm) {
+      margin-left: 0;
+      max-width: 50%;
+    }
+  }
+
   & .sponsors {
     margin-top: 10px;
     margin-bottom: 30px;

@@ -371,6 +371,10 @@ body {
   background-color: #017653;
   padding-bottom: 30px;
   padding-top: 30px; }
+  @media (min-width: 768px) {
+    .prefooter-wrap {
+      margin-left: 0;
+      max-width: 50%; } }
   .prefooter .sponsors {
     margin-top: 10px;
     margin-bottom: 30px; }
