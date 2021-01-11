@@ -33341,7 +33341,18 @@ if (!!map) {
         }
 
         list.classList.add("expandable");
-        toggles.forEach(el => new _expandToggle.default(el));
+        toggles.forEach(element => {
+          const el = new _expandToggle.default(element);
+
+          if (window.location.hash) {
+            const id = window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2);
+            console.log(id);
+
+            if (element.dataset.expands === id) {
+              el.expand();
+            }
+          }
+        });
       });
 
       if (point.get("Existing?")) {
@@ -33480,19 +33491,9 @@ var _expandToggle = _interopRequireDefault(require("@threespot/expand-toggle"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 const toggles = document.querySelectorAll("[data-expands]");
-const map = document.getElementById('map');
 toggles.forEach((element, index) => {
   const el = new _expandToggle.default(element);
-
-  if (!!map) {
-    if (window.location.hash) {
-      if (element.dataset.expands === window.location.hash.substr(1)) {
-        el.expand();
-      }
-    }
-  } else {
-    index === 0 ? el.expand() : null;
-  }
+  index === 0 ? el.expand() : null;
 });
 },{"@threespot/expand-toggle":"../node_modules/@threespot/expand-toggle/dist/expand-toggle.m.js"}],"index.js":[function(require,module,exports) {
 "use strict";
@@ -33532,7 +33533,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60413" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62106" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
