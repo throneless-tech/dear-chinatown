@@ -207,6 +207,8 @@ if (!!map) {
       const type = e.features[0].properties.Category;
       const image = e.features[0].properties.image;
 
+      console.log(image);
+
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
       // over the copy being pointed to.
@@ -216,7 +218,7 @@ if (!!map) {
 
       new mapboxgl.Popup({offset: 20})
         .setLngLat(coordinates)
-        .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : null}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
+        .setHTML(`${image !== 'null' ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
         .addTo(map);
     });
 
@@ -236,12 +238,14 @@ if (!!map) {
       item.addEventListener('click', function () {
         collection.features.find(point => {
           if (item.id === point.properties.id) {
+            const image = point.properties.image;
+
             map.flyTo({
               center: point.geometry.coordinates,
             });
             new mapboxgl.Popup({offset: 20})
               .setLngLat(point.geometry.coordinates)
-              .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div><div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
+              .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div><div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
               .addTo(map);
           }
         })
@@ -253,12 +257,13 @@ if (!!map) {
       item.addEventListener('click', function () {
         collection.features.find(point => {
           if (item.id.slice(5) === point.properties.id) {
+            const image = point.properties.image;
             map.flyTo({
               center: point.geometry.coordinates,
             });
             new mapboxgl.Popup({offset: 20})
               .setLngLat(point.geometry.coordinates)
-              .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div><div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
+              .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div><div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
               .addTo(map);
           }
         })

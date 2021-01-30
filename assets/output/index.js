@@ -33464,7 +33464,8 @@ if (!!map) {
       const address = e.features[0].properties.Address;
       const description = e.features[0].properties.Quote;
       const type = e.features[0].properties.Category;
-      const image = e.features[0].properties.image; // Ensure that if the map is zoomed out such that multiple
+      const image = e.features[0].properties.image;
+      console.log(image); // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
       // over the copy being pointed to.
 
@@ -33474,7 +33475,7 @@ if (!!map) {
 
       new _mapboxGl.default.Popup({
         offset: 20
-      }).setLngLat(coordinates).setHTML("".concat(image ? "<img src=".concat(image, " class=\"mapboxgl-popup-content-image\" />") : null, "<div class=\"mapboxgl-popup-content-title f-rose f-green\">").concat(name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(address, " | ").concat(type, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(description ? description : '', "</div>")).addTo(map);
+      }).setLngLat(coordinates).setHTML("".concat(image !== 'null' ? "<img src=".concat(image, " class=\"mapboxgl-popup-content-image\" />") : '', "<div class=\"mapboxgl-popup-content-title f-rose f-green\">").concat(name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(address, " | ").concat(type, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(description ? description : '', "</div>")).addTo(map);
     }); // Change the cursor to a pointer when the mouse is over the places layer.
 
     map.on('mouseenter', 'places', () => {
@@ -33490,12 +33491,13 @@ if (!!map) {
       item.addEventListener('click', function () {
         collection.features.find(point => {
           if (item.id === point.properties.id) {
+            const image = point.properties.image;
             map.flyTo({
               center: point.geometry.coordinates
             });
             new _mapboxGl.default.Popup({
               offset: 20
-            }).setLngLat(point.geometry.coordinates).setHTML("<div class=\"mapboxgl-popup-content-title f-rose f-green\">".concat(point.properties.Name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(point.properties.Address, " | ").concat(point.properties.Category, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(point.properties.Description ? point.properties.Description : '', "</div>")).addTo(map);
+            }).setLngLat(point.geometry.coordinates).setHTML("".concat(image ? "<img src=".concat(image, " class=\"mapboxgl-popup-content-image\" />") : '', "<div class=\"mapboxgl-popup-content-title f-rose f-green\">").concat(point.properties.Name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(point.properties.Address, " | ").concat(point.properties.Category, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(point.properties.Description ? point.properties.Description : '', "</div>")).addTo(map);
           }
         });
       });
@@ -33505,12 +33507,13 @@ if (!!map) {
       item.addEventListener('click', function () {
         collection.features.find(point => {
           if (item.id.slice(5) === point.properties.id) {
+            const image = point.properties.image;
             map.flyTo({
               center: point.geometry.coordinates
             });
             new _mapboxGl.default.Popup({
               offset: 20
-            }).setLngLat(point.geometry.coordinates).setHTML("<div class=\"mapboxgl-popup-content-title f-rose f-green\">".concat(point.properties.Name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(point.properties.Address, " | ").concat(point.properties.Category, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(point.properties.Description ? point.properties.Description : '', "</div>")).addTo(map);
+            }).setLngLat(point.geometry.coordinates).setHTML("".concat(image ? "<img src=".concat(image, " class=\"mapboxgl-popup-content-image\" />") : '', "<div class=\"mapboxgl-popup-content-title f-rose f-green\">").concat(point.properties.Name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(point.properties.Address, " | ").concat(point.properties.Category, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(point.properties.Description ? point.properties.Description : '', "</div>")).addTo(map);
           }
         });
       });
@@ -33567,7 +33570,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56994" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59392" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
