@@ -33359,7 +33359,24 @@ if (!!map) {
         existing.innerHTML += "<li id=\"list-".concat(point.getId(), "\" class=\"assets-item-list-item\">").concat(i + 1, ". ").concat(name);
       } else {
         past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
-      }
+      } // fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${point.get("Address")}.json?access_token=${process.env.MAPBOX_TOKEN}`)
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     coordinates = data.features[0].center;
+      //     properties = {};
+      //     properties['id'] = point.getId();
+      //     properties['index'] = i + 1;
+      //     properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
+      //     let feature = {
+      //       "type": "Feature",
+      //       "geometry": {
+      //         "type": "Point", "coordinates": coordinates
+      //       },
+      //       "properties": properties
+      //     };
+      //     collection.features.push(feature);
+      //   });
+
 
       fetch("https://www.mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
         coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
@@ -33446,26 +33463,57 @@ if (!!map) {
         'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'min_height']],
         'fill-extrusion-opacity': 0.6
       }
-    }, labelLayerId);
-    map.addSource('currentBuildings', {
-      type: 'geojson',
-      data: {
-        "type": "FeatureCollection",
-        "features": []
-      }
-    });
-    map.getSource('currentBuildings').setData({
-      "type": "FeatureCollection",
-      "features": []
-    });
+    }, labelLayerId); // map.addSource('currentBuildings', {
+    //   type: 'geojson',
+    //   data: collection,
+    // });
+    //
+    // map.addLayer({
+    //   "id": "highlight",
+    //   "source": "currentBuildings",
+    //   'type': 'fill-extrusion',
+    //   'minzoom': 15,
+    //   'paint': {
+    //     'fill-extrusion-color': '#064E3C',
+    //     // use an 'interpolate' expression to add a smooth transition effect to the
+    //     // buildings as the user zooms in
+    //     'fill-extrusion-height': [
+    //       'interpolate',
+    //       ['linear'],
+    //       ['zoom'],
+    //       15,
+    //       0,
+    //       15.05,
+    //       ['get', 'height']
+    //     ],
+    //     'fill-extrusion-base': [
+    //       'interpolate',
+    //       ['linear'],
+    //       ['zoom'],
+    //       15,
+    //       0,
+    //       15.05,
+    //       ['get', 'min_height']
+    //     ],
+    //     'fill-extrusion-opacity': 0.6
+    //   }
+    // }, labelLayerId);
+    //
+    // map.on('click', '3d-buildings', function(e) {
+    // 	console.log(e.features)
+    //   map.getSource('currentBuildings').setData({
+    //     "type": "FeatureCollection",
+    //     "features": e.features
+    //   });
+    // });
+
     map.on('click', 'places', e => {
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.Name;
       const address = e.features[0].properties.Address;
       const description = e.features[0].properties.Quote;
       const type = e.features[0].properties.Category;
-      const image = e.features[0].properties.image;
-      console.log(image); // Ensure that if the map is zoomed out such that multiple
+      const image = e.features[0].properties.image; // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
       // over the copy being pointed to.
 
@@ -33489,6 +33537,12 @@ if (!!map) {
     const legendItems = document.querySelectorAll('.legend-assets-item-list-item');
     legendItems.forEach(item => {
       item.addEventListener('click', function () {
+        const popup = document.getElementsByClassName('mapboxgl-popup');
+
+        if (popup.length) {
+          popup[0].remove();
+        }
+
         collection.features.find(point => {
           if (item.id === point.properties.id) {
             const image = point.properties.image;
@@ -33505,6 +33559,12 @@ if (!!map) {
     const listItems = document.querySelectorAll('.assets-item-list-item');
     listItems.forEach(item => {
       item.addEventListener('click', function () {
+        const popup = document.getElementsByClassName('mapboxgl-popup');
+
+        if (popup.length) {
+          popup[0].remove();
+        }
+
         collection.features.find(point => {
           if (item.id.slice(5) === point.properties.id) {
             const image = point.properties.image;
@@ -33570,7 +33630,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59392" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60304" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
