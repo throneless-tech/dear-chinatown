@@ -33336,6 +33336,7 @@ if (!!map) {
         if (point.get("Category") == list.id) {
           let item = document.createElement("li");
           item.classList.add("legend-assets-item-list-item");
+          item.id = point.getId();
           item.innerHTML = name;
           list.appendChild(item);
         }
@@ -33346,7 +33347,6 @@ if (!!map) {
 
           if (window.location.hash) {
             const id = window.location.hash.charAt(1).toUpperCase() + window.location.hash.slice(2);
-            console.log(id);
 
             if (element.dataset.expands === id) {
               el.expand();
@@ -33356,7 +33356,7 @@ if (!!map) {
       });
 
       if (point.get("Existing?")) {
-        existing.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
+        existing.innerHTML += "<li id=\"list-".concat(point.getId(), "\" class=\"assets-item-list-item\">").concat(i + 1, ". ").concat(name);
       } else {
         past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
       }
@@ -33364,7 +33364,8 @@ if (!!map) {
       fetch("https://www.mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
         coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
         properties = point.fields;
-        properties['id'] = i + 1;
+        properties['id'] = point.getId();
+        properties['index'] = i + 1;
         let feature = {
           "type": "Feature",
           "geometry": {
@@ -33405,7 +33406,7 @@ if (!!map) {
       'layout': {
         'icon-image': ['case', ['boolean', ['has', "Existing?"], true], 'circle-icon', 'triangle-icon'],
         'icon-size': 0.65,
-        'text-field': ['get', 'id'],
+        'text-field': ['get', 'index'],
         // 'text-font': ['Source Serif Pro'], // #FIXME needs to be edited in Mapbox Studio
         // https://docs.mapbox.com/help/troubleshooting/manage-fontstacks/
         // 'text-offset': [0, 0.2],
@@ -33480,6 +33481,37 @@ if (!!map) {
 
     map.on('mouseleave', 'places', () => {
       map.getCanvas().style.cursor = '';
+    }); // fly to a location upon click in the legend or list
+
+    const legendItems = document.querySelectorAll('.legend-assets-item-list-item');
+    legendItems.forEach(item => {
+      item.addEventListener('click', function () {
+        collection.features.find(point => {
+          if (item.id === point.properties.id) {
+            map.flyTo({
+              center: point.geometry.coordinates
+            });
+            new _mapboxGl.default.Popup({
+              offset: 20
+            }).setLngLat(point.geometry.coordinates).setHTML("<div class=\"mapboxgl-popup-content-title f-rose f-green\">".concat(point.properties.Name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(point.properties.Address, " | ").concat(point.properties.Category, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(point.properties.Description ? point.properties.Description : '', "</div>")).addTo(map);
+          }
+        });
+      });
+    });
+    const listItems = document.querySelectorAll('.assets-item-list-item');
+    listItems.forEach(item => {
+      item.addEventListener('click', function () {
+        collection.features.find(point => {
+          if (item.id.slice(5) === point.properties.id) {
+            map.flyTo({
+              center: point.geometry.coordinates
+            });
+            new _mapboxGl.default.Popup({
+              offset: 20
+            }).setLngLat(point.geometry.coordinates).setHTML("<div class=\"mapboxgl-popup-content-title f-rose f-green\">".concat(point.properties.Name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(point.properties.Address, " | ").concat(point.properties.Category, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(point.properties.Description ? point.properties.Description : '', "</div>")).addTo(map);
+          }
+        });
+      });
     });
   });
 }
@@ -33533,7 +33565,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62106" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56994" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
