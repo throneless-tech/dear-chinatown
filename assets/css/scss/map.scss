@@ -37,6 +37,12 @@ $map-margin: 40px;
     padding: 20px;
     position: relative;
 
+    &-image {
+      display: block;
+      margin-bottom: 1rem;
+      width: 100%;
+    }
+
     &-title {
       font-size: 1.5em;
     }

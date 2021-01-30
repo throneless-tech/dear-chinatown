@@ -33366,6 +33366,7 @@ if (!!map) {
         properties = point.fields;
         properties['id'] = point.getId();
         properties['index'] = i + 1;
+        properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
         let feature = {
           "type": "Feature",
           "geometry": {
@@ -33462,7 +33463,8 @@ if (!!map) {
       const name = e.features[0].properties.Name;
       const address = e.features[0].properties.Address;
       const description = e.features[0].properties.Quote;
-      const type = e.features[0].properties.Category; // Ensure that if the map is zoomed out such that multiple
+      const type = e.features[0].properties.Category;
+      const image = e.features[0].properties.image; // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
       // over the copy being pointed to.
 
@@ -33472,7 +33474,7 @@ if (!!map) {
 
       new _mapboxGl.default.Popup({
         offset: 20
-      }).setLngLat(coordinates).setHTML("<div class=\"mapboxgl-popup-content-title f-rose f-green\">".concat(name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(address, " | ").concat(type, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(description ? description : '', "</div>")).addTo(map);
+      }).setLngLat(coordinates).setHTML("".concat(image ? "<img src=".concat(image, " class=\"mapboxgl-popup-content-image\" />") : null, "<div class=\"mapboxgl-popup-content-title f-rose f-green\">").concat(name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(address, " | ").concat(type, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(description ? description : '', "</div>")).addTo(map);
     }); // Change the cursor to a pointer when the mouse is over the places layer.
 
     map.on('mouseenter', 'places', () => {

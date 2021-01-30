@@ -428,6 +428,10 @@ body {
     background-color: #FEFEF1;
     padding: 20px;
     position: relative; }
+    .mapboxgl-popup-content-image {
+      display: block;
+      margin-bottom: 1rem;
+      width: 100%; }
     .mapboxgl-popup-content-title {
       font-size: 1.5em; }
     .mapboxgl-popup-content-info {

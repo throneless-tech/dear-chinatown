@@ -57,6 +57,7 @@ if (!!map) {
           } else {
             past.innerHTML += `<li class="assets-item-list-item">${i + 1}. ${name}`;
           }
+
           fetch(`https://www.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.get("Address")}`)
             .then(response => response.json())
             .then(data => {
@@ -64,6 +65,7 @@ if (!!map) {
               properties = point.fields;
               properties['id'] = point.getId();
               properties['index'] = i + 1;
+              properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
               let feature = {
                 "type": "Feature",
                 "geometry": {
@@ -203,6 +205,7 @@ if (!!map) {
       const address = e.features[0].properties.Address;
       const description = e.features[0].properties.Quote;
       const type = e.features[0].properties.Category;
+      const image = e.features[0].properties.image;
 
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
@@ -213,7 +216,7 @@ if (!!map) {
 
       new mapboxgl.Popup({offset: 20})
         .setLngLat(coordinates)
-        .setHTML(`<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
+        .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : null}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
         .addTo(map);
     });
 
