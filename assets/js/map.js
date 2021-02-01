@@ -137,12 +137,54 @@ if (!!map) {
     map.addSource('places', {
       'type': 'geojson',
       'data': collection,
+      'cluster': true,
+      'clusterMaxZoom': 18, // Max zoom to cluster points
+      'clusterRadius': 50 // Radius of each cluster when clustering points (defaults to 50)
     })
+
+    map.addLayer({
+      'id': 'clusters',
+      'type': 'circle',
+      'source': 'places',
+      'filter': ['has', 'point_count'],
+      'paint': {
+        'circle-color': [
+          'match', // https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-match
+          ['get', 'Category'],
+          'Arts', '#D9891C',
+          'Business', '#D42A2A',
+          'Community', 'rgba(212,42,42,0.3)',
+          'Family', '#878484',
+          'Landmark', '#EFC01C',
+          'Park', '#064E3C',
+          'Recreation', '#BAD9C6',
+          'Residential', '#6794B4',
+          'Religion', '#8A2E8C',
+          '#064E3C' // any other type
+        ],
+        'circle-radius': [
+          'step',
+          ['get', 'point_count'],
+          20,
+          2,
+          30,
+          5,
+          40,
+          10,
+          50,
+          15,
+          60,
+          20,
+          70
+        ]
+      },
+    });
 
     map.addLayer({
       'id': 'places',
       'type': 'symbol',
       'source': 'places',
+      'filter': ['!', ['has', 'point_count']],
       'layout': {
         'icon-image': [
           'case',
@@ -223,58 +265,59 @@ if (!!map) {
       labelLayerId
     );
 
-    map.addSource('currentBuildings', {
-      type: 'geojson',
-      data: [],
-    });
+    /*
+    * we're not currently filtering buildings,
+    * but keeping this code jic
+    */
 
-    map.addLayer({
-      "id": "highlight",
-      "source": "currentBuildings",
-      'type': 'fill-extrusion',
-      'minzoom': 15,
-      'paint': {
-        'fill-extrusion-color': '#064E3C',
-        // use an 'interpolate' expression to add a smooth transition effect to the
-        // buildings as the user zooms in
-        'fill-extrusion-height': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          15,
-          0,
-          15.05,
-          ['get', 'height']
-        ],
-        'fill-extrusion-base': [
-          'interpolate',
-          ['linear'],
-          ['zoom'],
-          15,
-          0,
-          15.05,
-          ['get', 'min_height']
-        ],
-        'fill-extrusion-opacity': 0.6
-      }
-    }, labelLayerId);
-
-    map.on('click', '3d-buildings', function(e) {
-    	console.log(e.features)
-      map.getSource('currentBuildings').setData({
-        "type": "FeatureCollection",
-        "features": e.features
-      });
-      var features = map.queryRenderedFeatures(e.point);
-      console.log(features);
-    });
-
-    const features = map.queryRenderedFeatures(
-      [-77.020, 38.899],
-      { layers: ['places'] }
-    );
-
-    console.log(features);
+    // map.addSource('currentBuildings', {
+    //   type: 'geojson',
+    //   data: [],
+    // });
+    //
+    // map.addLayer({
+    //   "id": "highlight",
+    //   "source": "currentBuildings",
+    //   'type': 'fill-extrusion',
+    //   'minzoom': 15,
+    //   'paint': {
+    //     'fill-extrusion-color': '#064E3C',
+    //     // use an 'interpolate' expression to add a smooth transition effect to the
+    //     // buildings as the user zooms in
+    //     'fill-extrusion-height': [
+    //       'interpolate',
+    //       ['linear'],
+    //       ['zoom'],
+    //       15,
+    //       0,
+    //       15.05,
+    //       ['get', 'height']
+    //     ],
+    //     'fill-extrusion-base': [
+    //       'interpolate',
+    //       ['linear'],
+    //       ['zoom'],
+    //       15,
+    //       0,
+    //       15.05,
+    //       ['get', 'min_height']
+    //     ],
+    //     'fill-extrusion-opacity': 0.6
+    //   }
+    // }, labelLayerId);
+    //
+    // map.on('click', '3d-buildings', function(e) {
+    //   map.getSource('currentBuildings').setData({
+    //     "type": "FeatureCollection",
+    //     "features": e.features
+    //   });
+    //   var features = map.queryRenderedFeatures(e.point);
+    // });
+    //
+    // const features = map.queryRenderedFeatures(
+    //   [-77.020, 38.899],
+    //   { layers: ['places'] }
+    // );
 
     map.on('click', 'places', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
@@ -292,8 +335,8 @@ if (!!map) {
       }
 
       map.flyTo({
-        center: [coordinates[0], (coordinates[1]  + 0.0009)],
-        zoom: 17,
+        center: [coordinates[0], (coordinates[1]  + 0.00005)],
+        zoom: 19,
       });
 
       new mapboxgl.Popup({offset: 20})
@@ -325,8 +368,8 @@ if (!!map) {
             const image = point.properties.image;
 
             map.flyTo({
-              center: [point.geometry.coordinates[0], (point.geometry.coordinates[1]  + 0.0009)],
-              zoom: 17,
+              center: [point.geometry.coordinates[0], (point.geometry.coordinates[1]  + 0.00005)],
+              zoom: 19,
             });
             new mapboxgl.Popup({offset: 20})
               .setLngLat(point.geometry.coordinates)
@@ -348,8 +391,8 @@ if (!!map) {
           if (item.id.slice(5) === point.properties.id) {
             const image = point.properties.image;
             map.flyTo({
-              center: [point.geometry.coordinates[0], (point.geometry.coordinates[1]  + 0.0009)],
-              zoom: 17,
+              center: [point.geometry.coordinates[0], (point.geometry.coordinates[1]  + 0.00005)],
+              zoom: 19,
             });
             new mapboxgl.Popup({offset: 20})
               .setLngLat(point.geometry.coordinates)
