@@ -40,7 +40,9 @@ $map-margin: 40px;
     &-image {
       display: block;
       margin-bottom: 1rem;
-      width: 100%;
+      margin-left: auto;
+      margin-right: auto;
+      width: 75%;
     }
 
     &-title {

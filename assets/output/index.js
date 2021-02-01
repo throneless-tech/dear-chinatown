@@ -33359,7 +33359,28 @@ if (!!map) {
         existing.innerHTML += "<li id=\"list-".concat(point.getId(), "\" class=\"assets-item-list-item\">").concat(i + 1, ". ").concat(name);
       } else {
         past.innerHTML += "<li class=\"assets-item-list-item\">".concat(i + 1, ". ").concat(name);
-      } // fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${point.get("Address")}.json?access_token=${process.env.MAPBOX_TOKEN}`)
+      }
+
+      coordinates = [point.get('Longitude'), point.get('Latitude')];
+      properties = point.fields;
+      properties['id'] = point.getId();
+      properties['index'] = i + 1;
+      properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
+      let feature = {
+        "type": "Feature",
+        "geometry": {
+          "type": "Point",
+          "coordinates": coordinates
+        },
+        "properties": properties
+      };
+      collection.features.push(feature);
+      /*
+      * removing the following fetch requests because
+      * we're using exact coordinates from Airtable instead.
+      * Keeping them commented out jic
+      */
+      // fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${point.get("Address")}.json?access_token=${process.env.MAPBOX_TOKEN}`)
       //   .then(response => response.json())
       //   .then(data => {
       //     coordinates = data.features[0].center;
@@ -33376,24 +33397,23 @@ if (!!map) {
       //     };
       //     collection.features.push(feature);
       //   });
-
-
-      fetch("https://www.mapquestapi.com/geocoding/v1/address?key=".concat("R5MPS1Okozfow7EkH2a7wmPKHo4HSaUV", "&location=").concat(point.get("Address"))).then(response => response.json()).then(data => {
-        coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
-        properties = point.fields;
-        properties['id'] = point.getId();
-        properties['index'] = i + 1;
-        properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
-        let feature = {
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": coordinates
-          },
-          "properties": properties
-        };
-        collection.features.push(feature);
-      });
+      // fetch(`https://www.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.get("Address")}`)
+      //   .then(response => response.json())
+      //   .then(data => {
+      //     coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
+      //     properties = point.fields;
+      //     properties['id'] = point.getId();
+      //     properties['index'] = i + 1;
+      //     properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
+      //     let feature = {
+      //       "type": "Feature",
+      //       "geometry": {
+      //         "type": "Point", "coordinates": coordinates
+      //       },
+      //       "properties": properties
+      //     };
+      //     collection.features.push(feature);
+      //   });
     });
   });
   _mapboxGl.default.accessToken = "pk.eyJ1IjoibWxld2luc21pdGgiLCJhIjoiY2tleDMwMGQwMDF5azJ3cDM5aWd5aGZzcCJ9.NRVX39VAQ9o5ZoM-cGWXPg";
@@ -33463,50 +33483,38 @@ if (!!map) {
         'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'min_height']],
         'fill-extrusion-opacity': 0.6
       }
-    }, labelLayerId); // map.addSource('currentBuildings', {
-    //   type: 'geojson',
-    //   data: collection,
-    // });
-    //
-    // map.addLayer({
-    //   "id": "highlight",
-    //   "source": "currentBuildings",
-    //   'type': 'fill-extrusion',
-    //   'minzoom': 15,
-    //   'paint': {
-    //     'fill-extrusion-color': '#064E3C',
-    //     // use an 'interpolate' expression to add a smooth transition effect to the
-    //     // buildings as the user zooms in
-    //     'fill-extrusion-height': [
-    //       'interpolate',
-    //       ['linear'],
-    //       ['zoom'],
-    //       15,
-    //       0,
-    //       15.05,
-    //       ['get', 'height']
-    //     ],
-    //     'fill-extrusion-base': [
-    //       'interpolate',
-    //       ['linear'],
-    //       ['zoom'],
-    //       15,
-    //       0,
-    //       15.05,
-    //       ['get', 'min_height']
-    //     ],
-    //     'fill-extrusion-opacity': 0.6
-    //   }
-    // }, labelLayerId);
-    //
-    // map.on('click', '3d-buildings', function(e) {
-    // 	console.log(e.features)
-    //   map.getSource('currentBuildings').setData({
-    //     "type": "FeatureCollection",
-    //     "features": e.features
-    //   });
-    // });
-
+    }, labelLayerId);
+    map.addSource('currentBuildings', {
+      type: 'geojson',
+      data: []
+    });
+    map.addLayer({
+      "id": "highlight",
+      "source": "currentBuildings",
+      'type': 'fill-extrusion',
+      'minzoom': 15,
+      'paint': {
+        'fill-extrusion-color': '#064E3C',
+        // use an 'interpolate' expression to add a smooth transition effect to the
+        // buildings as the user zooms in
+        'fill-extrusion-height': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'height']],
+        'fill-extrusion-base': ['interpolate', ['linear'], ['zoom'], 15, 0, 15.05, ['get', 'min_height']],
+        'fill-extrusion-opacity': 0.6
+      }
+    }, labelLayerId);
+    map.on('click', '3d-buildings', function (e) {
+      console.log(e.features);
+      map.getSource('currentBuildings').setData({
+        "type": "FeatureCollection",
+        "features": e.features
+      });
+      var features = map.queryRenderedFeatures(e.point);
+      console.log(features);
+    });
+    const features = map.queryRenderedFeatures([-77.020, 38.899], {
+      layers: ['places']
+    });
+    console.log(features);
     map.on('click', 'places', e => {
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.Name;
@@ -33521,6 +33529,10 @@ if (!!map) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
       }
 
+      map.flyTo({
+        center: [coordinates[0], coordinates[1] + 0.0009],
+        zoom: 17
+      });
       new _mapboxGl.default.Popup({
         offset: 20
       }).setLngLat(coordinates).setHTML("".concat(image !== 'null' ? "<img src=".concat(image, " class=\"mapboxgl-popup-content-image\" />") : '', "<div class=\"mapboxgl-popup-content-title f-rose f-green\">").concat(name, "</div><div class=\"mapboxgl-popup-content-info f-serif f-green\">").concat(address, " | ").concat(type, "</div><div class=\"mapboxgl-popup-content-quote f-serif\">").concat(description ? description : '', "</div>")).addTo(map);
@@ -33547,7 +33559,8 @@ if (!!map) {
           if (item.id === point.properties.id) {
             const image = point.properties.image;
             map.flyTo({
-              center: point.geometry.coordinates
+              center: [point.geometry.coordinates[0], point.geometry.coordinates[1] + 0.0009],
+              zoom: 17
             });
             new _mapboxGl.default.Popup({
               offset: 20
@@ -33569,7 +33582,8 @@ if (!!map) {
           if (item.id.slice(5) === point.properties.id) {
             const image = point.properties.image;
             map.flyTo({
-              center: point.geometry.coordinates
+              center: [point.geometry.coordinates[0], point.geometry.coordinates[1] + 0.0009],
+              zoom: 17
             });
             new _mapboxGl.default.Popup({
               offset: 20
@@ -33630,7 +33644,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60304" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54690" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
