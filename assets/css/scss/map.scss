@@ -143,7 +143,9 @@ body {
     &:last-child {
       align-self: stretch;
       height: inherit;
-      width: 70%;
+      @media (min-width: $bp-sm) {
+        width: 70%;
+      }
     }
   }
 

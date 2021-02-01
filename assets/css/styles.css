@@ -449,8 +449,10 @@ body {
       width: 30%; } }
   .map-item:last-child {
     align-self: stretch;
-    height: inherit;
-    width: 70%; }
+    height: inherit; }
+    @media (min-width: 768px) {
+      .map-item:last-child {
+        width: 70%; } }
   @media (min-width: 768px) {
     .map {
       display: flex; } }
