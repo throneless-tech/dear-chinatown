@@ -29,4 +29,4 @@ Start the server locally with `npm run start:dev`
 
 ## License
 
-Dear Chinatown is licensed under the GNU General Public License v3.0 (GPLv3) by Throneless Tech.
+Dear Chinatown is licensed under the GNU General Public License v3.0 (GPLv3) by [Throneless Tech](https://throneless.tech/).
