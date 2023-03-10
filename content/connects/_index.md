@@ -19,3 +19,5 @@ Washington, DC Maps:
 
 - [Mapping Segregation in Washington DC](https://www.mappingsegregationdc.org/) by Prologue DC
 - [D.C. Music Map](https://folklife.si.edu/dc-music-map) by Smithsonian Center for Folklife & Cultural Heritage
+
+If you are intrested in learning more about D.C.'s Chinatown and Asian American history in DC, or are looking to better understand how gentrification shows up in the neighborhood, check out these resources below. 
