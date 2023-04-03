@@ -30,7 +30,7 @@ if (!!map) {
     }, function done(err) {
         if (err) { console.error(err); return; };
         let coordinates, properties;
-        assets.forEach((point, i) => {
+        assets.forEach((point, i) => {          
           let name = point.get("Name");
           legendLists.forEach((list) => {
             if(point.get("Category") == list.id) {
@@ -62,6 +62,7 @@ if (!!map) {
           properties = point.fields;
           properties['id'] = point.getId();
           properties['index'] = i + 1;
+          properties['payment'] = point.get('Payment Type') ? point.get('Payment Type').toString() : null;
           properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
           let feature = {
             "type": "Feature",
@@ -71,47 +72,6 @@ if (!!map) {
             "properties": properties
           };
           collection.features.push(feature);
-
-          /*
-          * removing the following fetch requests because
-          * we're using exact coordinates from Airtable instead.
-          * Keeping them commented out jic
-          */
-
-          // fetch(`https://api.mapbox.com/geocoding/v5/mapbox.places/${point.get("Address")}.json?access_token=${process.env.MAPBOX_TOKEN}`)
-          //   .then(response => response.json())
-          //   .then(data => {
-          //     coordinates = data.features[0].center;
-          //     properties = {};
-          //     properties['id'] = point.getId();
-          //     properties['index'] = i + 1;
-          //     properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
-          //     let feature = {
-          //       "type": "Feature",
-          //       "geometry": {
-          //         "type": "Point", "coordinates": coordinates
-          //       },
-          //       "properties": properties
-          //     };
-          //     collection.features.push(feature);
-          //   });
-          // fetch(`https://www.mapquestapi.com/geocoding/v1/address\?key\=${process.env.MAPQUEST_API_KEY}\&location\=${point.get("Address")}`)
-          //   .then(response => response.json())
-          //   .then(data => {
-          //     coordinates = [parseFloat(data.results[0].locations[0].latLng.lng), parseFloat(data.results[0].locations[0].latLng.lat)];
-          //     properties = point.fields;
-          //     properties['id'] = point.getId();
-          //     properties['index'] = i + 1;
-          //     properties['image'] = point.get('Images') ? point.get('Images')[0].url : null;
-          //     let feature = {
-          //       "type": "Feature",
-          //       "geometry": {
-          //         "type": "Point", "coordinates": coordinates
-          //       },
-          //       "properties": properties
-          //     };
-          //     collection.features.push(feature);
-          //   });
         })
     });
 
@@ -194,9 +154,6 @@ if (!!map) {
         ],
         'icon-size': 0.65,
         'text-field': ['get', 'index'],
-        // 'text-font': ['Source Serif Pro'], // #FIXME needs to be edited in Mapbox Studio
-          // https://docs.mapbox.com/help/troubleshooting/manage-fontstacks/
-        // 'text-offset': [0, 0.2],
         'text-size': 14,
       },
       'paint': {
@@ -264,60 +221,6 @@ if (!!map) {
       },
       labelLayerId
     );
-
-    /*
-    * we're not currently filtering buildings,
-    * but keeping this code jic
-    */
-
-    // map.addSource('currentBuildings', {
-    //   type: 'geojson',
-    //   data: [],
-    // });
-    //
-    // map.addLayer({
-    //   "id": "highlight",
-    //   "source": "currentBuildings",
-    //   'type': 'fill-extrusion',
-    //   'minzoom': 15,
-    //   'paint': {
-    //     'fill-extrusion-color': '#064E3C',
-    //     // use an 'interpolate' expression to add a smooth transition effect to the
-    //     // buildings as the user zooms in
-    //     'fill-extrusion-height': [
-    //       'interpolate',
-    //       ['linear'],
-    //       ['zoom'],
-    //       15,
-    //       0,
-    //       15.05,
-    //       ['get', 'height']
-    //     ],
-    //     'fill-extrusion-base': [
-    //       'interpolate',
-    //       ['linear'],
-    //       ['zoom'],
-    //       15,
-    //       0,
-    //       15.05,
-    //       ['get', 'min_height']
-    //     ],
-    //     'fill-extrusion-opacity': 0.6
-    //   }
-    // }, labelLayerId);
-    //
-    // map.on('click', '3d-buildings', function(e) {
-    //   map.getSource('currentBuildings').setData({
-    //     "type": "FeatureCollection",
-    //     "features": e.features
-    //   });
-    //   var features = map.queryRenderedFeatures(e.point);
-    // });
-    //
-    // const features = map.queryRenderedFeatures(
-    //   [-77.020, 38.899],
-    //   { layers: ['places'] }
-    // );
 
     map.on('click', 'places', (e) => {
       const coordinates = e.features[0].geometry.coordinates.slice();
@@ -396,7 +299,7 @@ if (!!map) {
             });
             new mapboxgl.Popup({offset: 20})
               .setLngLat(point.geometry.coordinates)
-              .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div><div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
+              .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div><div class="mapboxgl-popup-content-info f-serif f-green"><a href="${point.properties.Website}">${point.properties.Website}</a></div>${point.properties.payment ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${point.properties.payment}</div>` : ''}${point.properties['Contact Info'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${point.properties['Contact Info']}</div>` : ''}${point.properties['Special Product'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${point.properties['Special Product']}</div>` : ''}${point.properties.History ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${point.properties.History}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
               .addTo(map);
           }
         })
