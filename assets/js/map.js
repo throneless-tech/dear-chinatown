@@ -226,9 +226,14 @@ if (!!map) {
       const coordinates = e.features[0].geometry.coordinates.slice();
       const name = e.features[0].properties.Name;
       const address = e.features[0].properties.Address;
-      const description = e.features[0].properties.Quote;
+      const description = e.features[0].properties.Description;
       const type = e.features[0].properties.Category;
       const image = e.features[0].properties.image;
+      const website = e.features[0].properties.Website;
+      const payment = e.features[0].properties.payment;
+      const contact = e.features[0].properties['Contact Info'];
+      const special = e.features[0].properties['Special Product'];
+      const history = e.features[0].properties.History;
 
       // Ensure that if the map is zoomed out such that multiple
       // copies of the feature are visible, the popup appears
@@ -244,7 +249,7 @@ if (!!map) {
 
       new mapboxgl.Popup({offset: 20})
         .setLngLat(coordinates)
-        .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div>${point.properties.Website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${point.properties.Website}">${point.properties.Website}</a></div>` : ''}${point.properties.payment ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${point.properties.payment}</div>` : ''}${point.properties['Contact Info'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${point.properties['Contact Info']}</div>` : ''}${point.properties['Special Product'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${point.properties['Special Product']}</div>` : ''}${point.properties.History ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${point.properties.History}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`)
+        .setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div>${website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${website}">${website}</a></div>` : ''}${payment || payment != " null" ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${payment}</div>` : ''}${contact ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${contact}</div>` : ''}${special ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${special}</div>` : ''}${history ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${history}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`)
         .addTo(map);
     });
 
