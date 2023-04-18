@@ -30491,7 +30491,7 @@ if (!!map) {
       });
       new _mapboxGl.default.Popup({
         offset: 20
-      }).setLngLat(coordinates).setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div>${website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${website}">${website}</a></div>` : ''}${payment || payment != " null" ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${payment}</div>` : ''}${contact ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${contact}</div>` : ''}${special ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${special}</div>` : ''}${history ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${history}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`).addTo(map);
+      }).setLngLat(coordinates).setHTML(`${image != "null" ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div>${website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${website}">${website}</a></div>` : ''}${payment || payment != "null" ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${payment}</div>` : ''}${contact ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${contact}</div>` : ''}${special ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${special}</div>` : ''}${history ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${history}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`).addTo(map);
     });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
@@ -30591,7 +30591,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54620" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54940" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
