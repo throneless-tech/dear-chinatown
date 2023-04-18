@@ -30486,7 +30486,7 @@ if (!!map) {
       });
       new _mapboxGl.default.Popup({
         offset: 20
-      }).setLngLat(coordinates).setHTML(`${image !== 'null' ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div><div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`).addTo(map);
+      }).setLngLat(coordinates).setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div>${point.properties.Website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${point.properties.Website}">${point.properties.Website}</a></div>` : ''}${point.properties.payment ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${point.properties.payment}</div>` : ''}${point.properties['Contact Info'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${point.properties['Contact Info']}</div>` : ''}${point.properties['Special Product'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${point.properties['Special Product']}</div>` : ''}${point.properties.History ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${point.properties.History}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`).addTo(map);
     });
 
     // Change the cursor to a pointer when the mouse is over the places layer.
@@ -30586,7 +30586,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53517" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53859" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
