@@ -30486,11 +30486,12 @@ if (!!map) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
       }
       map.flyTo({
-        center: [coordinates[0], coordinates[1] + 0.00005],
+        center: [coordinates[0], coordinates[1] + 0.00025],
         zoom: 19
       });
       new _mapboxGl.default.Popup({
-        offset: 20
+        anchor: 'bottom',
+        offset: 40
       }).setLngLat(coordinates).setHTML(`${image != "null" ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${address} | ${type}</div>${website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${website}">${website}</a></div>` : ''}${payment && payment != "null" ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${payment}</div>` : ''}${contact ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${contact}</div>` : ''}${special ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${special}</div>` : ''}${history ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${history}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${description ? description : ''}</div>`).addTo(map);
     });
 
@@ -30516,11 +30517,12 @@ if (!!map) {
           if (item.id === point.properties.id) {
             const image = point.properties.image;
             map.flyTo({
-              center: [point.geometry.coordinates[0], point.geometry.coordinates[1] + 0.00005],
+              center: [point.geometry.coordinates[0], point.geometry.coordinates[1] + 0.00025],
               zoom: 19
             });
             new _mapboxGl.default.Popup({
-              offset: 20
+              anchor: 'bottom',
+              offset: 40
             }).setLngLat(point.geometry.coordinates).setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div>${point.properties.Website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${point.properties.Website}">${point.properties.Website}</a></div>` : ''}${point.properties.payment ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${point.properties.payment}</div>` : ''}${point.properties['Contact Info'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${point.properties['Contact Info']}</div>` : ''}${point.properties['Special Product'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${point.properties['Special Product']}</div>` : ''}${point.properties.History ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${point.properties.History}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`).addTo(map);
           }
         });
@@ -30537,11 +30539,12 @@ if (!!map) {
           if (item.id.slice(5) === point.properties.id) {
             const image = point.properties.image;
             map.flyTo({
-              center: [point.geometry.coordinates[0], point.geometry.coordinates[1] + 0.00005],
+              center: [point.geometry.coordinates[0], point.geometry.coordinates[1] + 0.00025],
               zoom: 19
             });
             new _mapboxGl.default.Popup({
-              offset: 20
+              anchor: 'bottom',
+              offset: 40
             }).setLngLat(point.geometry.coordinates).setHTML(`${image ? `<img src=${image} class="mapboxgl-popup-content-image" />` : ''}<div class="mapboxgl-popup-content-title f-rose f-green">${point.properties.Name}</div><div class="mapboxgl-popup-content-info f-serif f-green">${point.properties.Address} | ${point.properties.Category}</div>${point.properties.Website ? `<div class="mapboxgl-popup-content-info f-serif f-green"><a href="${point.properties.Website}">${point.properties.Website}</a></div>` : ''}${point.properties.payment ? `<div class="mapboxgl-popup-content-info f-serif f-green">Accepted payment types: ${point.properties.payment}</div>` : ''}${point.properties['Contact Info'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Contact info: ${point.properties['Contact Info']}</div>` : ''}${point.properties['Special Product'] ? `<div class="mapboxgl-popup-content-info f-serif f-green">Special product: ${point.properties['Special Product']}</div>` : ''}${point.properties.History ? `<div class="mapboxgl-popup-content-info f-serif f-green">History: ${point.properties.History}</div>` : ''}<div class="mapboxgl-popup-content-quote f-serif">${point.properties.Description ? point.properties.Description : ''}</div>`).addTo(map);
           }
         });
@@ -30591,7 +30594,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50843" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53706" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
