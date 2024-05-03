@@ -29946,7 +29946,7 @@ var Airtable = /** @class */function () {
     return {
       endpointUrl: undefined || 'https://api.airtable.com',
       apiVersion: '0.1.0',
-      apiKey: "key4kC0z4hHhtUIQh",
+      apiKey: "patKkXGdX2GMxEvqP.123692e7e0a82d49a733f2aa81c769685a87591e70fd79a02a8f977c63fa2b5e",
       noRetryIfRateLimited: false,
       requestTimeout: 300 * 1000
     };
@@ -30316,7 +30316,7 @@ const images = [{
 }];
 if (!!map) {
   const base = new _airtable.default({
-    apiKey: "key4kC0z4hHhtUIQh"
+    apiKey: "patKkXGdX2GMxEvqP.123692e7e0a82d49a733f2aa81c769685a87591e70fd79a02a8f977c63fa2b5e"
   }).base("appqK60gESyHauPxx");
   let assets = [];
   let collection = {
@@ -30594,7 +30594,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53706" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59195" + '/');
   ws.onmessage = function (event) {
     checkedAssets = {};
     assetsToAccept = [];
