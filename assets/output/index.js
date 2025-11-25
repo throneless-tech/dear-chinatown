@@ -30451,9 +30451,9 @@ if (!!map) {
       }
     }
     map.addLayer({
-      'id': '3d-buildings',
-      'source': 'composite',
-      'source-layer': 'building',
+      'id': 'eraser',
+      'source': 'clip',
+      'source-layer': 'eraser',
       'filter': ['==', 'extrude', 'true'],
       'type': 'fill-extrusion',
       'minzoom': 10,
