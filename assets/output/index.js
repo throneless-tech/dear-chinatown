@@ -30384,7 +30384,7 @@ if (!!map) {
   const map = new _mapboxGl.default.Map({
     center: [-77.02249, 38.89920],
     container: 'map',
-    style: "mapbox://styles/mlewinsmith/ckgfjvxed869h19o98gtunc62",
+    style: "mapbox://styles/jenn-w-low/cmi3q5y4800ek01s4bplg9xfz",
     zoom: 15
   });
   map.on('load', () => {
